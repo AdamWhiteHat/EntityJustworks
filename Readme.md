@@ -1,3 +1,4 @@
+<pre><code>
 /* 
  * EntityJustWorks.SQL - C# class object to/from SQL database
  *    by Adam Rakaska
@@ -167,3 +168,4 @@ namespace EntityJustWorks.SQL
 		public static string RowToValueString(DataRow Row)
 	}
 }
+</code></pre>
