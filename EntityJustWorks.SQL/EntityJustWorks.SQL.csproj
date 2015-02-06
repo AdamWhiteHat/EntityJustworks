@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Code.cs" />
     <Compile Include="Convert.cs" />
+    <Compile Include="Emit.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

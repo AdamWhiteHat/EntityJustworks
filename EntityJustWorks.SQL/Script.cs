@@ -1,5 +1,13 @@
-﻿using System;
-using System.IO;
+﻿/* 
+ * EntityJustWorks.SQL - C# class object to/from SQL database
+ * 
+ * 
+ *  Full code and more available @
+ *    http://www.csharpprogramming.tips
+ * 
+ * 
+ */
+using System;
 using System.Text;
 using System.Linq;
 using System.Data;

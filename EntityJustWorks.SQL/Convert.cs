@@ -1,4 +1,13 @@
-﻿using System.Data;
+﻿/* 
+ * EntityJustWorks.SQL - C# class object to/from SQL database
+ * 
+ * 
+ *  Full code and more available @
+ *    http://www.csharpprogramming.tips
+ * 
+ * 
+ */
+using System.Data;
 
 namespace EntityJustWorks.SQL
 {

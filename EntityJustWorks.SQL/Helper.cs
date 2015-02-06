@@ -1,4 +1,13 @@
-﻿using System;
+﻿/* 
+ * EntityJustWorks.SQL - C# class object to/from SQL database
+ * 
+ * 
+ *  Full code and more available @
+ *    http://www.csharpprogramming.tips
+ * 
+ * 
+ */
+using System;
 using System.Text;
 using System.Linq;
 using System.Data;
@@ -19,9 +28,15 @@ namespace EntityJustWorks.SQL
 		/// <returns>False if the specified DataTable null, has zero columns, or zero rows, otherwise true.</returns>
 		public static bool IsValidDatatable(DataTable Table, bool IgnoreRows = false)
 		{
-			if (Table == null) return false;
-			if (Table.Columns.Count == 0) return false;
-			if (!IgnoreRows && Table.Rows.Count == 0) return false;
+			if (Table == null)
+				return false;
+			if (Table.Columns.Count == 0)
+				return false;
+			if (IgnoreRows)
+				return true;
+			if (Table.Rows.Count == 0)
+				return false;
+
 			return true;
 		}
 
@@ -34,6 +49,49 @@ namespace EntityJustWorks.SQL
 		public static bool IsCollectionEmpty<T>(IEnumerable<T> Input)
 		{
 			return (Input == null || Input.Count() < 1) ? true : false;
+		}
+
+		/// <summary>
+		/// Checks the parameters for empty, nulls, or invalid states.
+		/// </summary>
+		/// <returns>True if the params are null, empty, contains an array or object that is null or empty, contains a blank, whitespace, null or empty string, or contains DataTable that does not pass a call to IsValidDatatable().</returns>
+		public static bool ContainsEmptyOrNulls(params object[] Items)
+		{
+            if (Items == null || Items.Length < 1)
+				return true;
+
+			foreach (object item in Items)
+			{
+				if (item == null)
+					return true;
+
+				if (item is string)
+				{
+					if (string.IsNullOrWhiteSpace(item as String))
+						return true;
+				}
+				else if (item is DataTable)
+				{
+					if (!IsValidDatatable(item as DataTable))
+						return true;
+				}
+
+				if (item.GetType().IsArray)
+				{
+					bool isEmpty = true;
+					foreach (object itm in (Array)item)
+					{
+						if (ContainsEmptyOrNulls(itm))
+							return true;
+
+						isEmpty = false;
+					}
+					if (isEmpty)
+						return true;
+				}
+			}
+
+			return false;
 		}
 
 		/// <summary>
