@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code.cs" />
-    <Compile Include="Convert.cs" />
     <Compile Include="Emit.cs" />
+    <Compile Include="Code.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

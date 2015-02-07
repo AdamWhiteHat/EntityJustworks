@@ -25,7 +25,7 @@ namespace EntityJustWorks.SQL
 		/// </summary>
 		public static string InsertInto<T>(params T[] ClassObjects) where T : class
 		{
-			DataTable table = Map.ClassToDatatable<T>(ClassObjects);
+			DataTable table = Map.FromClass<T>(ClassObjects);
 			return InsertInto(table);   // We don't need to check IsValidDatatable() because InsertInto does
 		}
 
@@ -60,7 +60,7 @@ namespace EntityJustWorks.SQL
 		/// </summary>
 		public static string CreateTable<T>(params T[] ClassObjects) where T : class
 		{
-			DataTable table = Map.ClassToDatatable<T>(ClassObjects);
+			DataTable table = Map.FromClass<T>(ClassObjects);
 			return Script.CreateTable(table);
 		}
 

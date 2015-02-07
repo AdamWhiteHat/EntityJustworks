@@ -12,6 +12,16 @@ using System.Data;
 using System.Reflection;
 using System.Reflection.Emit;
 
+using System.IO;
+using System.Text;
+using System.CodeDom;
+using Microsoft.CSharp;
+using System.Diagnostics;
+using System.CodeDom.Compiler;
+using System.Linq.Expressions;
+using System.Collections.Generic;
+
+
 namespace EntityJustWorks.SQL
 {
 	/// <summary>
@@ -19,7 +29,7 @@ namespace EntityJustWorks.SQL
 	/// </summary>
 	public static class EmitClass
 	{
-		public static Type DatatableToAssembly(DataTable Table)
+		public static Type FromDatatable(DataTable Table)
 		{
 			string typeName = Table.TableName;
 			string moduleName = string.Format("{0}Module", typeName);

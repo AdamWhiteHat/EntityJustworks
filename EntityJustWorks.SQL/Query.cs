@@ -7,9 +7,9 @@
  * 
  * 
  */
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace EntityJustWorks.SQL
 {
@@ -26,13 +26,13 @@ namespace EntityJustWorks.SQL
 		/// <param name="FormatString_Query">A SQL command that will be passed to string.Format().</param>
 		/// <param name="FormatString_Parameters">The parameters for string.Format().</param>
 		/// <returns>A List of classes that represent the records returned.</returns>
-		public static IList<T> QueryToClass<T>(string ConnectionString, string FormatString_Query, params object[] FormatString_Parameters) where T : class, new()
+		public static IList<T> ToClass<T>(string ConnectionString, string FormatString_Query, params object[] FormatString_Parameters) where T : class, new()
 		{
 			IList<T> result = new List<T>();
-			DataTable tableQueryResult = QueryToDataTable(ConnectionString, string.Format(FormatString_Query, FormatString_Parameters));
+			DataTable tableQueryResult = ToDataTable(ConnectionString, string.Format(FormatString_Query, FormatString_Parameters));
 			if (Helper.IsValidDatatable(tableQueryResult))
 			{
-				result = Map.DatatableToClass<T>(tableQueryResult);
+				result = Map.ToClass<T>(tableQueryResult);
 			}
 			return result;
 		}
@@ -44,7 +44,7 @@ namespace EntityJustWorks.SQL
 		/// <param name="FormatString_Query">A SQL command that will be passed to string.Format().</param>
 		/// <param name="FormatString_Parameters">The parameters for string.Format().</param>
 		/// <returns>The results of the query as a DataTable.</returns>
-		public static DataTable QueryToDataTable(string ConnectionString, string FormatString_Query, params object[] FormatString_Parameters)
+		public static DataTable ToDataTable(string ConnectionString, string FormatString_Query, params object[] FormatString_Parameters)
 		{
 			try
 			{
@@ -79,7 +79,7 @@ namespace EntityJustWorks.SQL
 		/// <param name="FormatString_Query">The SQL query as string.Format string.</param>
 		/// <param name="FormatString_Parameters">The string.Format parameters.</param>
 		/// <returns>The  first column of the first row in the result, converted and casted to type T.</returns>
-		public static T QueryToScalarType<T>(string ConnectionString, string FormatString_Query, params object[] FormatString_Parameters)
+		public static T ToScalarValue<T>(string ConnectionString, string FormatString_Query, params object[] FormatString_Parameters)
 		{
 			try
 			{
@@ -111,7 +111,7 @@ namespace EntityJustWorks.SQL
 		/// <param name="FormatString_Command">The SQL command, as a format string.</param>
 		/// <param name="FormatString_Parameters">The parameters for the format string.</param>
 		/// <returns>The number of rows affected, or -1 on errors.</returns>
-		public static int ExecuteNonQuery(string ConnectionString, string FormatString_Command, params object[] FormatString_Parameters)
+		public static int ExecuteStatement(string ConnectionString, string FormatString_Command, params object[] FormatString_Parameters)
 		{
 			try
 			{
