@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<title>Exported from Notepad++</title>
+<style type="text/css">
+span
+{
+	font-family: 'Courier New';
+	font-size: 10pt;
+	color: #000000;
+}
+
+.sp
+{
+}
+
+.accessibility
+{
+	font-weight: bold;
+	color: #0000FF;
+}
+
+.operator
+{
+	font-weight: bold;
+	color: #000080;
+}
+
+.reftype
+{
+}
+
+.keyword
+{
+	color: #8000FF;
+}
+</style>
+</head>
+<body style="background-color: #FFFFFF;">
+<div style="float: left; white-space: pre; line-height: 1; background: #FFFFFF; "><span class="accessibility">namespace</span><span class="sp"> </span><span class="reftype">EntityJustWorks</span><span class="operator">.</span><span class="reftype">SQL</span><span class="sp">
+</span><span class="operator">{</span><span class="sp">
+    </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">class</span><span class="sp"> </span><span class="reftype">Entity</span><span class="sp">
+    </span><span class="operator">{</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">DataFirstAsCode</span><span class="operator">(</span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">ConnectionString</span><span class="operator">,</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">TableName</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">DataFirstAsCode</span><span class="operator">(</span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">Table</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">Type</span><span class="sp"> </span><span class="reftype">DataFirstAsDynamicAssembly</span><span class="operator">(</span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">ConnectionString</span><span class="operator">,</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">TableName</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">Type</span><span class="sp"> </span><span class="reftype">DataFirstAsDynamicAssembly</span><span class="operator">(</span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">Table</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">bool</span><span class="sp"> </span><span class="reftype">CodeFirst</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;(</span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">ConnectionString</span><span class="operator">,</span><span class="sp"> </span><span class="accessibility">params</span><span class="sp"> </span><span class="reftype">T</span><span class="operator">[]</span><span class="sp"> </span><span class="reftype">ClassCollection</span><span class="operator">);</span><span class="sp">
+    </span><span class="operator">}</span><span class="sp">
+    
+    </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">class</span><span class="sp"> </span><span class="reftype">Map</span><span class="sp">
+    </span><span class="operator">{</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">IList</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;</span><span class="sp"> </span><span class="reftype">ToClass</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;(</span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">Table</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">FromClass</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;();</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">FromClass</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;(</span><span class="accessibility">params</span><span class="sp"> </span><span class="reftype">T</span><span class="operator">[]</span><span class="sp"> </span><span class="reftype">ClassCollection</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">private</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">void</span><span class="sp"> </span><span class="reftype">FromClass</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;(</span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">Table</span><span class="operator">,</span><span class="sp"> </span><span class="reftype">T</span><span class="sp"> </span><span class="reftype">ClassObject</span><span class="operator">);</span><span class="sp">
+    </span><span class="operator">}</span><span class="sp">
+    
+    </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">class</span><span class="sp"> </span><span class="reftype">Query</span><span class="sp">
+    </span><span class="operator">{</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">IList</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;</span><span class="sp"> </span><span class="reftype">ToClass</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;(</span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">ConnectionString</span><span class="operator">,</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">FormatString_Query</span><span class="operator">,</span><span class="sp"> </span><span class="accessibility">params</span><span class="sp"> </span><span class="accessibility">object</span><span class="operator">[]</span><span class="sp"> </span><span class="reftype">FormatString_Parameters</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">ToDataTable</span><span class="operator">(</span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">ConnectionString</span><span class="operator">,</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">FormatString_Query</span><span class="operator">,</span><span class="sp"> </span><span class="accessibility">params</span><span class="sp"> </span><span class="accessibility">object</span><span class="operator">[]</span><span class="sp"> </span><span class="reftype">FormatString_Parameters</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">T</span><span class="sp"> </span><span class="reftype">ToScalarValue</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;(</span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">ConnectionString</span><span class="operator">,</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">FormatString_Query</span><span class="operator">,</span><span class="sp"> </span><span class="accessibility">params</span><span class="sp"> </span><span class="accessibility">object</span><span class="operator">[]</span><span class="sp"> </span><span class="reftype">FormatString_Parameters</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">int</span><span class="sp"> </span><span class="reftype">ExecuteStatement</span><span class="operator">(</span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">ConnectionString</span><span class="operator">,</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">FormatString_Command</span><span class="operator">,</span><span class="sp"> </span><span class="accessibility">params</span><span class="sp"> </span><span class="accessibility">object</span><span class="operator">[]</span><span class="sp"> </span><span class="reftype">FormatString_Parameters</span><span class="operator">);</span><span class="sp">
+    </span><span class="operator">}</span><span class="sp">
+    
+    </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">class</span><span class="sp"> </span><span class="reftype">Script</span><span class="sp">
+    </span><span class="operator">{</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">InsertInto</span><span class="operator">(</span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">Table</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">InsertInto</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;(</span><span class="accessibility">params</span><span class="sp"> </span><span class="reftype">T</span><span class="operator">[]</span><span class="sp"> </span><span class="reftype">ClassObjects</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">CreateTable</span><span class="operator">(</span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">Table</span><span class="operator">);</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">CreateTable</span><span class="operator">&lt;</span><span class="reftype">T</span><span class="operator">&gt;(</span><span class="accessibility">params</span><span class="sp"> </span><span class="reftype">T</span><span class="operator">[]</span><span class="sp"> </span><span class="reftype">ClassObjects</span><span class="operator">);</span><span class="sp">
+    </span><span class="operator">}</span><span class="sp">
+    
+    </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">class</span><span class="sp"> </span><span class="reftype">Code</span><span class="sp">
+    </span><span class="operator">{</span><span class="sp">   
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">string</span><span class="sp"> </span><span class="reftype">FromDatatable</span><span class="operator">(</span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">Table</span><span class="operator">,</span><span class="sp"> </span><span class="keyword">bool</span><span class="sp"> </span><span class="reftype">AutoSaveCodeFile</span><span class="sp"> </span><span class="operator">=</span><span class="sp"> </span><span class="accessibility">true</span><span class="operator">);</span><span class="sp">
+    </span><span class="operator">}</span><span class="sp">
+        
+    </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="keyword">class</span><span class="sp"> </span><span class="reftype">EmitClass</span><span class="sp">
+    </span><span class="operator">{</span><span class="sp">
+        </span><span class="accessibility">public</span><span class="sp"> </span><span class="keyword">static</span><span class="sp"> </span><span class="reftype">Type</span><span class="sp"> </span><span class="reftype">FromDatatable</span><span class="operator">(</span><span class="reftype">DataTable</span><span class="sp"> </span><span class="reftype">Table</span><span class="operator">);</span><span class="sp">
+    </span><span class="operator">}</span><span class="sp">
+</span><span class="operator">}</span><span class="sp">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </span></div></body>
+</html>
