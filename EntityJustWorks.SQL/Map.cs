@@ -109,16 +109,16 @@ namespace EntityJustWorks.SQL
                 DataColumn column = new DataColumn();
                 column.ColumnName = property.Name;
 
-                if (Helper.IsNullableType(column.DataType))
+				if (Helper.IsNullableType(property.PropertyType))
                 {
-                    if (column.DataType.IsGenericType)
+					if (property.PropertyType.IsGenericType)
                     {
                         // If Nullable<> and Generic, this is how we get the underlying Type...
-                        column.DataType = column.DataType.GenericTypeArguments.FirstOrDefault();
+						column.DataType = property.PropertyType.GenericTypeArguments.FirstOrDefault();
                     }
                     else
                     {
-                        column.DataType = column.DataType.UnderlyingSystemType;
+						column.DataType = property.PropertyType.UnderlyingSystemType;
                     }
                     
                     column.AllowDBNull = true;

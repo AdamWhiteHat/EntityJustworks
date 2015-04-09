@@ -9,3 +9,4 @@ EntityJustWorks.SQL/obj/*
 *.suo
 EntityJustWorks.SQL/obj/Debug/TemporaryGeneratedFile_*.cs
 *.bak
+*.zip
