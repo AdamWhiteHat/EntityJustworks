@@ -8,3 +8,4 @@ EntityJustWorks.SQL/obj/*
 *.cache
 *.suo
 EntityJustWorks.SQL/obj/Debug/TemporaryGeneratedFile_*.cs
+*.bak

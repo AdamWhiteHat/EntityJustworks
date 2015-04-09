@@ -25,7 +25,7 @@ using System.Collections.Generic;
 namespace EntityJustWorks.SQL
 {
 	/// <summary>
-	/// Class assembly emit class
+	/// Dynamic class assembly Reflection.Emit class
 	/// </summary>
 	public static class EmitClass
 	{

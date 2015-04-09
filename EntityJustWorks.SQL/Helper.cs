@@ -16,7 +16,7 @@ using System.Collections.Generic;
 namespace EntityJustWorks.SQL
 {
 	/// <summary>
-	/// Helper Functions. Conversion, Validation
+	/// Conversion, validation, sanitization helper functions.
 	/// </summary>
 	public static class Helper
 	{
@@ -24,15 +24,15 @@ namespace EntityJustWorks.SQL
 		/// Indicates whether a specified DataTable is null, has zero columns, or (optionally) zero rows.
 		/// </summary>
 		/// <param name="Table">DataTable to check.</param>
-		/// <param name="IgnoreRows">When set to true, the function will return true even if the table's row count is equal to zero.</param>
+		/// <param name="IgnoreZeroRows">When set to true, the function will return true even if the table's row count is equal to zero.</param>
 		/// <returns>False if the specified DataTable null, has zero columns, or zero rows, otherwise true.</returns>
-		public static bool IsValidDatatable(DataTable Table, bool IgnoreRows = false)
+		public static bool IsValidDatatable(DataTable Table, bool IgnoreZeroRows = false)
 		{
 			if (Table == null)
 				return false;
 			if (Table.Columns.Count == 0)
 				return false;
-			if (IgnoreRows)
+			if (IgnoreZeroRows)
 				return true;
 			if (Table.Rows.Count == 0)
 				return false;

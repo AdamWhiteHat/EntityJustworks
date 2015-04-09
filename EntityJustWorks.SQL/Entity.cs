@@ -32,7 +32,7 @@ namespace EntityJustWorks.SQL
         public static Type DataFirstAsDynamicAssembly(string ConnectionString, string TableName)
         {
             DataTable table = Query.ToDataTable(ConnectionString, "SELECT TOP 1 * FROM [{0}]", TableName);
-            return EmitClass.FromDatatable(table);
+			return Entity.DataFirstAsDynamicAssembly(table);
         }
 
         public static Type DataFirstAsDynamicAssembly(DataTable Table)
