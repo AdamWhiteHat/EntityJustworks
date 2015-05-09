@@ -2,7 +2,7 @@
 
 namespace EntityJustWorks.SQL
 {
-    	/// <summary>
+    /// <summary>
 	/// Convert to and from a CLR class instance
 	/// </summary>
    	public static class ClassInstance

@@ -113,7 +113,7 @@ namespace EntityJustWorks.SQL
 		}
 
 		/// <summary>
-		///  Indicates whether a specified Type can be assigned null.
+		///  Indicates whether a specified Type is a nullable type.
 		/// </summary>
 		/// <param name="input">The Type to check for nullable property.</param>
 		/// <returns>True if the specified Type can be assigned null, otherwise false.</returns>
