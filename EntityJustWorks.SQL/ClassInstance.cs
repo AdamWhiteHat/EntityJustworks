@@ -16,9 +16,9 @@ using System.IO;
 
 namespace EntityJustWorks.SQL
 {
-    /// <summary>
-    /// DataTable/Class Mapping Class
-    /// </summary>
+	/// <summary>
+	/// Convert to and from a CLR class instance
+	/// </summary>
     public static class ClassInstance
 	{
 		/// <summary> 
