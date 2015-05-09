@@ -20,14 +20,14 @@ namespace EntityJustWorks.SQL
 	/// <summary>
 	/// SQL Script Generation Class
 	/// </summary>
-	public static class Script
+	public static class SQLScript
 	{
 		/// <summary>
 		/// Creates a SQL script that inserts the values of the specified classes' public properties into a table.
 		/// </summary>
 		public static string InsertInto<T>(params T[] ClassObjects) where T : class
 		{
-			DataTable table = Map.FromClass<T>(ClassObjects);
+			DataTable table = Table.FromClassInstanceCollection<T>(ClassObjects);
 			return InsertInto(table);   // We don't need to check IsValidDatatable() because InsertInto does
 		}
 
@@ -51,7 +51,10 @@ namespace EntityJustWorks.SQL
 				if (string.IsNullOrWhiteSpace(columns) || string.IsNullOrWhiteSpace(values))
 					return string.Empty;
 
-				result.AppendFormat("INSERT INTO [{0}] {1} VALUES {2}", Table.TableName, columns, values);
+				result.AppendLine(string.Format("INSERT INTO [{0}]", Table.TableName));
+				result.AppendLine(string.Format("   {0}", columns));
+				result.AppendLine("VALUES");
+				result.AppendLine(string.Format("   {0}", values));
 			}
 
 			return result.ToString();
@@ -62,8 +65,8 @@ namespace EntityJustWorks.SQL
 		/// </summary>
 		public static string CreateTable<T>(params T[] ClassObjects) where T : class
 		{
-			DataTable table = Map.FromClass<T>(ClassObjects);
-			return Script.CreateTable(table);
+			DataTable table = Table.FromClassInstanceCollection<T>(ClassObjects);
+			return SQLScript.CreateTable(table);
 		}
 
 		/// <summary>
@@ -71,27 +74,29 @@ namespace EntityJustWorks.SQL
 		/// </summary>
 		public static string CreateTable(DataTable Table)
 		{
-			if (!Helper.IsValidDatatable(Table, IgnoreZeroRows: true))
+			if (!Helper.IsValidDatatable(Table, ignoreZeroRows: true))
 				return string.Empty;
 
 			StringBuilder result = new StringBuilder();
-			result.AppendFormat("CREATE TABLE [{1}] ({0}   ", Environment.NewLine, Table.TableName);
+			result.AppendLine(string.Format("CREATE TABLE [{0}] (", Table.TableName));
+			result.Append("   ");
 
 			bool FirstTime = true;
 			foreach (DataColumn column in Table.Columns.OfType<DataColumn>())
 			{
-				if (FirstTime) FirstTime = false;
+				if (FirstTime)
+					FirstTime = false;
 				else
 					result.Append("   ,");
 
-				result.AppendFormat("[{0}] {1} {2} {3}",
+				result.AppendLine(string.Format("[{0}] {1} {2}",
 					column.ColumnName, // 0
 					GetSQLTypeAsString(column.DataType), // 1
-					column.AllowDBNull ? "NULL" : "NOT NULL", // 2
-					Environment.NewLine // 3
-				);
+					column.AllowDBNull ? "NULL" : "NOT NULL" // 2
+				));
 			}
-			result.AppendFormat(") ON [PRIMARY]{0}GO{0}{0}", Environment.NewLine);
+			result.AppendLine(") ON [PRIMARY]");
+			result.AppendLine("GO");
 
 			// Build an ALTER TABLE script that adds keys to a table that already exists.
 			if (Table.PrimaryKey.Length > 0)
@@ -107,19 +112,25 @@ namespace EntityJustWorks.SQL
 		{
 			// Already checked by public method CreateTable. Un-comment if making the method public
 			// if (Helper.IsValidDatatable(Table, IgnoreZeroRows: true)) return string.Empty;
-			if (Table.PrimaryKey.Length < 1) return string.Empty;
+			if (Table.PrimaryKey.Length < 1) 
+				return string.Empty;
 
 			StringBuilder result = new StringBuilder();
 
 			if (Table.PrimaryKey.Length == 1)
-				result.AppendFormat("ALTER TABLE {1}{0}ADD PRIMARY KEY ({2}){0}GO{0}{0}", Environment.NewLine, Table.TableName, Table.PrimaryKey[0].ColumnName);
+			{
+				result.AppendLine(string.Format("ALTER TABLE {0}", Table.TableName));
+				result.AppendLine(string.Format("ADD PRIMARY KEY ({0})", Table.PrimaryKey[0].ColumnName));
+			}
 			else
 			{
 				List<string> compositeKeys = Table.PrimaryKey.OfType<DataColumn>().Select(dc => dc.ColumnName).ToList();
-				string keyName = compositeKeys.Aggregate((a,b) => a + b);
+				string keyName = compositeKeys.Aggregate((a, b) => a + b);
 				string keys = compositeKeys.Aggregate((a, b) => string.Format("{0}, {1}", a, b));
-				result.AppendFormat("ALTER TABLE {1}{0}ADD CONSTRAINT pk_{3} PRIMARY KEY ({2}){0}GO{0}{0}", Environment.NewLine, Table.TableName, keys, keyName);
+				result.AppendLine(string.Format("ALTER TABLE {0}", Table.TableName));
+				result.AppendLine(string.Format("ADD CONSTRAINT pk_{0} PRIMARY KEY ({1})", keyName, keys));
 			}
+			result.AppendLine("GO");
 
 			return result.ToString();
 		}

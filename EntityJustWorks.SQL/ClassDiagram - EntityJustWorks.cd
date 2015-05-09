@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EntityJustWorks.SQL.ClassInstance">
+    <Position X="3.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAEAKIAAAAAA=</HashCode>
+      <FileName>ClassInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityJustWorks.SQL.Table">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="IsValidObjectData" Hidden="true" />
+      <Method Name="IsValidTableData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAABAAIAAAAAAAQAAAAAAKIAAAFAA=</HashCode>
+      <FileName>Table.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityJustWorks.SQL.DatabaseQuery">
+    <Position X="6" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAIAQAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityJustWorks.SQL.SQLScript">
+    <Position X="3.25" Y="2.5" Width="2.5" />
+    <Members>
+      <Method Name="BuildKeysScript" Hidden="true" />
+      <Method Name="GetSQLTypeAsString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAACAAAAAAAAAQAAEAAA=</HashCode>
+      <FileName>SQLScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
