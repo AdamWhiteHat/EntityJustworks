@@ -45,12 +45,12 @@ namespace EntityJustWorks.SQL
 		/// Example: ([FullName], [Gender], [BirthDate])
 		/// </summary>
 		/// <returns>A string formatted like the columns specified in an SQL 'INSERT INTO' statement.</returns>
-		public static string RowToColumnString(DataRow dataRow)
+        public static string TableToColumnsString(DataTable Table)
 		{
-			if (!IsValidDatatable(dataRow.Table))
+            if (!IsValidDatatable(Table))
 				return string.Empty;
 
-			IEnumerable<string> collection = dataRow.Table.Columns.OfType<DataColumn>().Select(col => col.ColumnName);
+            IEnumerable<string> collection = Table.Columns.OfType<DataColumn>().Select(col => col.ColumnName);
 			return ListToDelimitedString(collection, "([", "], [", "])");
 		}
 
@@ -113,7 +113,7 @@ namespace EntityJustWorks.SQL
 		}
 
 		/// <summary>
-		///  Indicates whether a specified Type is a nullable type.
+        ///  Indicates whether a specified Type can be assigned null.
 		/// </summary>
 		/// <param name="input">The Type to check for nullable property.</param>
 		/// <returns>True if the specified Type can be assigned null, otherwise false.</returns>

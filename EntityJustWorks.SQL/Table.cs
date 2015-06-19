@@ -1,19 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Reflection;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Collections.Generic;
+
+using System.Linq;
+using System.Data;
+using System.Data.SqlClient;
+
 using System.Reflection;
 using System.Reflection.Emit;
+
+using System.Linq.Expressions;
+
 using System.CodeDom;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
-using System.Linq.Expressions;
-using System.IO;
+
 
 namespace EntityJustWorks.SQL
 {

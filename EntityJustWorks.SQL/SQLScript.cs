@@ -20,7 +20,7 @@ namespace EntityJustWorks.SQL
 	/// <summary>
 	/// SQL Script Generation Class
 	/// </summary>
-	public static class SQLScript
+	public static partial class SQLScript
 	{
 		/// <summary>
 		/// Creates a SQL script that inserts the values of the specified classes' public properties into a table.
@@ -39,13 +39,14 @@ namespace EntityJustWorks.SQL
 			if (!Helper.IsValidDatatable(Table))
 				return string.Empty;
 
+            string columns = Helper.TableToColumnsString(Table);
+
 			StringBuilder result = new StringBuilder();
 			foreach (DataRow row in Table.Rows)
 			{
-				if (row == null || row.Table.Columns.Count < 1 || row.ItemArray.Length < 1)
-					return string.Empty;
+                if (row == null || row.ItemArray.Length < 1)
+                    continue;
 
-				string columns = Helper.RowToColumnString(row);
 				string values = Helper.RowToValueString(row);
 
 				if (string.IsNullOrWhiteSpace(columns) || string.IsNullOrWhiteSpace(values))
