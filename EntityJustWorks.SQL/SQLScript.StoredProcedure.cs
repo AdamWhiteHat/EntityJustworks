@@ -13,6 +13,7 @@ using System.Linq;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 // EntityJustWorks.SQL - Provides entity/object to data mapping functions for SQL repositories.
 namespace EntityJustWorks.SQL
@@ -31,23 +32,46 @@ namespace EntityJustWorks.SQL
                 return GenerateStoredProcedure(Table, GenerateUpdate(Table, WhereClause));
             }
 
-            private static string GenerateStoredProcedure(DataTable Table, string Body)
-            {
-                StringBuilder result = new StringBuilder();
-                result.AppendLine("USE [{DatabaseName}]");
-                result.AppendLine("GO");
-                result.AppendLine("CREATE PROCEDURE [dbo].[{StoredProcedureName}]");
-                result.AppendLine("(");
-                result.AppendLine(GenerateParameterList(Table));
-                result.AppendLine(")");
-                result.AppendLine("AS");
-                result.AppendLine("BEGIN");
-                result.AppendLine(Body);
-                result.AppendLine("END");
-                return result.ToString();
-            }
+			public static List<SqlParameter> DataRowToSqlParameters(DataRow Row)
+			{
+				List<SqlParameter> result = new List<SqlParameter>();
 
-            public static string GenerateParameterList(DataTable Table)
+				if (Row == null || Row.ItemArray.Length < 1)
+				{
+					return result;
+				}
+
+				foreach (DataColumn column in Row.Table.Columns)
+				{
+					SqlParameter param = new SqlParameter();
+					param.ParameterName = string.Format("@{0}", column.ColumnName);
+					param.SqlDbType = SQLScript.GetSqlDbType(column.DataType);
+					param.Value = Row[column];
+					result.Add(param);
+				}
+
+				return result;
+			}
+			protected static string GenerateStoredProcedure(DataTable Table, string Body)
+			{
+				StringBuilder result = new StringBuilder();
+
+				result.AppendLine("USE [{DatabaseName}]");
+				result.AppendLine("GO");
+				result.AppendLine();
+				result.AppendLine("CREATE PROCEDURE [dbo].[{StoredProcedureName}]");
+				result.AppendLine("(");
+				result.AppendLine( string.Concat("\t", GenerateParameterList(Table)) );
+				result.AppendLine(")");
+				result.AppendLine("AS");
+				result.AppendLine("BEGIN");
+				result.AppendLine(Body);
+				result.AppendLine("END");
+
+				return result.ToString();
+			}
+
+            protected static string GenerateParameterList(DataTable Table)
             {
                 if (!Helper.IsValidDatatable(Table))
                     return string.Empty;
@@ -56,14 +80,12 @@ namespace EntityJustWorks.SQL
                 foreach (DataColumn column in Table.Columns)
                 {
                     if (result.Length != 0)
-                        result.Append("\n\t,");	// Add CR, TAB, COMMA
+                        result.Append("\n,");	// Add CR, TAB, COMMA
 
                     result.AppendFormat("@{0} {1}", column.ColumnName, GetSQLTypeAsString(column.DataType));
                     result.AppendLine();
                 }
-
-                result.Insert(0, '\t');
-
+				
                 return result.ToString();
             }
 
@@ -104,7 +126,6 @@ namespace EntityJustWorks.SQL
                         result.Append("\t,");
 
                     result.AppendLine(string.Format("[{0}] = @{1}", column, column));
-
                 }
 
                 result.Insert(0, "\t");
@@ -118,6 +139,7 @@ namespace EntityJustWorks.SQL
 
                 return result.ToString();
             }
+
         } // END StoredProcedure
 	}
 }

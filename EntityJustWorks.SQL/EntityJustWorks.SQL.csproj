@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseQuery.StoredProcedure.cs" />
     <Compile Include="SQLScript.StoredProcedure.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="Code.cs" />

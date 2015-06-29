@@ -12,6 +12,7 @@ using System.Text;
 using System.Linq;
 using System.Data;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace EntityJustWorks.SQL
 {
@@ -30,14 +31,19 @@ namespace EntityJustWorks.SQL
 		{
 			if (dataTable == null)
 				return false;
-			if (dataTable.Columns.Count == 0)
+			if (dataTable.Columns == null ||dataTable.Columns.Count == 0)
 				return false;
 			if (ignoreZeroRows)
 				return true;
-			if (dataTable.Rows.Count == 0)
+			if (dataTable.Rows == null || dataTable.Rows.Count == 0)
 				return false;
 
 			return true;
+		}
+
+		public static List<SqlParameter> DataRowToSqlParameters(DataRow Row)
+		{
+			return SQLScript.StoredProcedure.DataRowToSqlParameters(Row);
 		}
 
 		/// <summary>
