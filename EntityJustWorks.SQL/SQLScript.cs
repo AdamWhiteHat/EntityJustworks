@@ -145,14 +145,14 @@ namespace EntityJustWorks.SQL
 			{
 				case "Boolean": return "[bit]";
 				case "Char": return "[char]";
-				//case "SByte": return "[tinyint]";
+				case "SByte": return "[tinyint]";
 				case "Int16": return "[smallint]";
 				case "Int32": return "[int]";
 				case "Int64": return "[bigint]";
-				//case "Byte": return "[tinyint] UNSIGNED";
-				//case "UInt16": return "[smallint] UNSIGNED";
-				//case "UInt32": return "[int] UNSIGNED";
-				//case "UInt64": return "[bigint] UNSIGNED";
+				case "Byte": return "[tinyint] UNSIGNED";
+				case "UInt16": return "[smallint] UNSIGNED";
+				case "UInt32": return "[int] UNSIGNED";
+				case "UInt64": return "[bigint] UNSIGNED";
 				case "Single": return "[float]";
 				case "Double": return "[double]";
 				case "Decimal": return "[decimal]";
