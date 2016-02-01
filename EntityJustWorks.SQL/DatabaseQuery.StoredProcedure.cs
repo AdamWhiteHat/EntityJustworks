@@ -12,20 +12,20 @@ namespace EntityJustWorks.SQL
 	{
 		public class StoredProcedure
 		{
-			public static DataTable QueryToDataTable(string ConnectionString, string StoredProcedureName, params SqlParameter[] SQLParameters)
+			public static DataTable QueryToDataTable(string connectionString, string storedProcedureName, params SqlParameter[] sqlParameters)
 			{
 				try
 				{
 					DataTable result = new DataTable();
 
-					using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+					using (SqlConnection sqlConnection = new SqlConnection(connectionString))
 					{
-						using (SqlDataAdapter sqlAdapter = new SqlDataAdapter(StoredProcedureName, sqlConnection))
+						using (SqlDataAdapter sqlAdapter = new SqlDataAdapter(storedProcedureName, sqlConnection))
 						{
 							sqlAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-							if (SQLParameters != null && SQLParameters.Length > 0)
+							if (sqlParameters != null && sqlParameters.Length > 0)
 							{
-								sqlAdapter.SelectCommand.Parameters.AddRange(SQLParameters);
+								sqlAdapter.SelectCommand.Parameters.AddRange(sqlParameters);
 							}
 
 							int rowsAdded = sqlAdapter.Fill(result);
@@ -43,21 +43,21 @@ namespace EntityJustWorks.SQL
 				return new DataTable();
 			}
 
-			public static int NonQuery(string ConnectionString, string StoredProcedureName, List<SqlParameter> SqlParameters)
+			public static int NonQuery(string connectionString, string storedProcedureName, List<SqlParameter> sqlParameters)
 			{
 				try
 				{
-					using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+					using (SqlConnection sqlConnection = new SqlConnection(connectionString))
 					{
 						sqlConnection.Open();
 						using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
 						{
 							sqlCommand.CommandType = CommandType.StoredProcedure;
-							sqlCommand.CommandText = StoredProcedureName;
+							sqlCommand.CommandText = storedProcedureName;
 
-							if (SqlParameters != null && SqlParameters.Count > 0)
+							if (sqlParameters != null && sqlParameters.Count > 0)
 							{
-								sqlCommand.Parameters.AddRange(SqlParameters.ToArray());
+								sqlCommand.Parameters.AddRange(sqlParameters.ToArray());
 							}
 
 							return sqlCommand.ExecuteNonQuery();

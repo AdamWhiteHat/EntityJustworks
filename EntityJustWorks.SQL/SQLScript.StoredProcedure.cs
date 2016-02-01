@@ -22,16 +22,29 @@ namespace EntityJustWorks.SQL
 	{
 		public static class StoredProcedure
         {
+			/// <summary>
+			/// Returns an SQL script that creates an INSERT INTO stored procedure from a DataTable, with the parameter names matching the ColumnNames 
+			/// </summary>
             public static string Insert(DataTable Table)
             {
                 return GenerateStoredProcedure(Table, GenerateInsertInto(Table));
             }
 
+			/// <summary>
+			/// /// Returns an SQL script that creates an UPDATE stored procedure from a DataTable, with the parameter names matching the ColumnNames 
+			/// </summary>
             public static string Update(DataTable Table, string WhereClause)
             {
+				DataRowToSqlParameters(Table.Rows[0]);
                 return GenerateStoredProcedure(Table, GenerateUpdate(Table, WhereClause));
             }
 
+			/// <summary>
+			/// <para>Generates a List&lt;SqlParameter from a DataRow</para>
+			/// <para>The quantity, type and name of the parameters will exactly match that of the Columns collection of the DataTable that the DataRow belongs to.</para>
+			/// <para>If the DataRow does not belong to a DataTable, the return value will be an empty List.</para>
+			/// </summary>
+			/// <param name="Row">The DataRow to make the SqlParameters for.</param>
 			public static List<SqlParameter> DataRowToSqlParameters(DataRow Row)
 			{
 				List<SqlParameter> result = new List<SqlParameter>();
@@ -52,7 +65,8 @@ namespace EntityJustWorks.SQL
 
 				return result;
 			}
-			protected static string GenerateStoredProcedure(DataTable Table, string Body)
+
+			private static string GenerateStoredProcedure(DataTable Table, string Body)
 			{
 				StringBuilder result = new StringBuilder();
 
@@ -71,7 +85,7 @@ namespace EntityJustWorks.SQL
 				return result.ToString();
 			}
 
-            protected static string GenerateParameterList(DataTable Table)
+			private static string GenerateParameterList(DataTable Table)
             {
                 if (!Helper.IsValidDatatable(Table))
                     return string.Empty;
