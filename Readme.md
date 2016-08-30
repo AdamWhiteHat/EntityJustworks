@@ -55,6 +55,87 @@ Generate the C# class as C# code using code DOM:
 <br />
 <br />
 
+
+
+
+Class Hierarchy and Their Methods
+===
+<pre><code>
+namespace EntityJustWorks.SQL
+{
+	public static class Table
+	{
+		Table.FromClass<T>();
+		Table.FromClassInstance<T>(System.Data.DataTable, T);
+		Table.FromClassInstanceCollection<T>(T[]);
+		Table.FromQuery(string, string, object[]);
+		Table.ToAssembly(System.Data.DataTable);
+		Table.ToClassInstanceCollection<T>(System.Data.DataTable);
+		Table.ToCSharpCode(System.Data.DataTable, string);
+	}
+
+	public static class ClassInstance
+	{
+		FromQuery<T>(string, string, object[]);
+		FromDataTable<T>(System.Data.DataTable);
+		ToDataTable<T>();
+		ToDataTable<T>(T[]);
+		ToCSharpCode<T>(string);
+		ToAssembly<T>();	
+	}
+
+	public static class SQLScript
+	{
+		CreateTable<T>(T[]);
+		CreateTable(System.Data.DataTable);
+		InsertInto<T>(T[]);
+		InsertInto(System.Data.DataRow);
+	}
+
+	public static class SQLScript.StoredProcedure
+	{
+		SQLScript.StoredProcedure.Insert(System.Data.DataTable);
+		SQLScript.StoredProcedure.Update(System.Data.DataTable, string);
+		SQLScript.StoredProcedure.GenerateParameterList(System.Data.DataTable);
+	}
+	
+	public static class DatabaseQuery
+	{
+		ToClass<T>(string, string, object[]);
+		ToDataTable(string, string, object[]);
+		NonQueryCommand(string, string, object[]);
+		ToScalarValue<T>(string, string, object[]);
+	}
+
+	public static class Code
+	{
+		CreateClass(string);
+		CreateCode(System.Data.DataTable, string);
+		CreateCodeNamespace(System.Data.DataTable);
+		CreateConstructor(string);
+		CreateGeneratorOptions();
+		CreateProperty(string, System.Type);	
+	}
+	
+	public static class Helper
+	{
+		EscapeSingleQuotes(string);
+		ListToDelimitedString<T>(System.Collections.Generic.IEnumerable<T>, string, string, string);
+		RowToValueString(System.Data.DataRow);
+		TableToColumnsString(System.Data.DataTable);
+		IsValidDatatable(System.Data.DataTable, bool);
+		IsCollectionEmpty<T>(System.Collections.Generic.IEnumerable<T>);
+		IsNullableType(System.Type);
+	}
+}
+</code></pre>
+<br />
+<br />
+<br />
+
+
+
+
 Links
 ===
    * http://www.csharpprogramming.tips - My C# programming blog
