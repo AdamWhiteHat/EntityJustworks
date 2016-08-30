@@ -1,210 +1,67 @@
-
 namespace EntityJustWorks.SQL
 {
-    /// <summary>
-    /// Convert to and from a CLR class instance
-    /// </summary>
-    public static class ClassInstance
-    {
-        /// <summary> 
-        /// Generates the C# class code from a DataTable.
-        /// </summary>
-        /// <returns>The C# class code as a string.</returns>
-        public static FileInfo ToCSharpCode<T>
-                (string customSavePath = "{Namespace}.{Class}.cs") where T : class
-        
-        /// <summary> 
-        /// Emits a C# Assembly with classes whos public properties match the columns of the DataTable.
-        /// </summary>
-        /// <returns>The C# Type for the emitted class</returns>
-        public static Type ToAssembly<T>() where T : class
-        
-        /// <summary>
-        /// Creates a DataTable from a class type's public properties and adds
-        /// a new DataRow to the table for each class passed as a parameter.
-        /// The DataColumns of the table will match the name and type of the public properties.
-        /// </summary>
-        /// <param name="classInstanceCollection">
-        /// A class or array of class to fill the DataTable with.
-        /// </param>
-        /// <returns>
-        /// A DataTable who's DataColumns match the name and type of each class T's public properties.
-        /// </returns>
-        public static DataTable ToDataTable<T>(params T[] classInstanceCollection) where T : class
-    
-        /// <summary>
-        /// Creates a DataTable from a class type's public properties.
-        /// The DataColumns of the table will match the name and type of the public properties.
-        /// </summary>
-        /// <typeparam name="T">The type of the class to create a DataTable from.</typeparam>
-        /// <returns>
-        /// A DataTable who's DataColumns match the name and type of each class T's public properties.
-        /// </returns>
-        public static DataTable ToDataTable<T>() where T : class
-    
-        /// <summary>
-        /// Executes an SQL query and returns the results as a DataTable.
-        /// </summary>
-        /// <param name="connectionString">The SQL connection string.</param>
-        /// <param name="formatString_Query">A SQL command that will be passed to string.Format().</param>
-        /// <param name="formatString_Parameters">The parameters for string.Format().</param>
-        /// <returns>The results of the query as a DataTable.</returns>
-        public static IList<T> FromQuery<T>(string connectionString,
-                string formatString_Query, params object[] formatString_Parameters) where T : class, new()
-        
-        /// <summary>
-        /// Fills properties of a class from a row of a DataTable
-        /// where the name of the property matches the column name from that DataTable.
-        /// It does this for each row in the DataTable, returning a List of classes.
-        /// </summary>
-        /// <typeparam name="T">The class type that is to be returned.</typeparam>
-        /// <param name="Table">DataTable to fill from.</param>
-        /// <returns>
-        /// A list of ClassType with its properties set to the data from the matching columns from the DataTable.
-        /// </returns>
-        public static IList<T> FromDataTable<T>(DataTable dataTable) where T : class, new()
-    }
-    
-    /// <summary>
-    /// Convert to and from a System.Data.DataTable
-    /// </summary>
-    public static class Table
-    {
-        /// <summary>
-        /// Creates a DataTable from a class type's public properties
-        /// and adds a new DataRow to the table for each class passed as a parameter.
-        /// The DataColumns of the table will match the name and type of the public properties.
-        /// </summary>
-        /// <param name="classInstanceCollection">A class or array of class to fill the DataTable with.</param>
-        /// <returns>
-        /// A DataTable who's DataColumns match the name and type of each class T's public properties.
-        /// </returns>
-        public static DataTable FromClassInstanceCollection<T>(params T[] classInstanceCollection) where T : class
-        
-        /// <summary>
-        /// Creates a DataTable from a class type's public properties.
-        /// The DataColumns of the table will match the name and type of the public properties.
-        /// </summary>
-        /// <typeparam name="T">The type of the class to create a DataTable from.</typeparam>
-        /// <returns>
-        /// A DataTable who's DataColumns match the name and type of each class T's public properties.
-        /// </returns>
-        public static DataTable FromClass<T>() where T : class
-        
-        /// <summary>
-        /// Adds a DataRow to a DataTable from the public properties of a class.
-        /// </summary>
-        /// <param name="dataTable">A reference to the DataTable to insert the DataRow into.</param>
-        /// <param name="classObject">The class containing the data to fill the DataRow from.</param>
-        /// <returns>The DataTable in the parameters. This return instance is superflowous; </returns>
-        public static DataTable FromClassInstance<T>(DataTable dataTable, T classObject) where T : class
-        
-        /// <summary>
-        /// Fills properties of a class from a row of a DataTable
-        /// where the name of the property matches the column name from that DataTable.
-        /// It does this for each row in the DataTable, returning a List of classes.
-        /// </summary>
-        /// <typeparam name="T">The class type that is to be returned.</typeparam>
-        /// <param name="dataTable">DataTable to fill from.</param>
-        /// <returns>
-        /// A list of ClassType with its properties set to the data from the matching columns from the DataTable.
-        /// </returns>
-        public static IList<T> ToClassInstanceCollection<T>(DataTable dataTable) where T : class, new()
-        
-        /// <summary>
-        /// Executes an SQL query and returns the results as a DataTable.
-        /// </summary>
-        /// <param name="connectionString">The SQL connection string.</param>
-        /// <param name="formatString_Query">A SQL command that will be passed to string.Format().</param>
-        /// <param name="formatString_Parameters">The parameters for string.Format().</param>
-        /// <returns>The results of the query as a DataTable.</returns>
-        public static DataTable FromQuery(string connectionString,
-                string formatString_Query, params object[] formatString_Parameters)
-        
-        /// <summary> 
-        /// Generates the C# class code from a DataTable.
-        /// </summary>
-        /// <returns>The C# class code as a string.</returns>
-        public static FileInfo ToCSharpCode(DataTable dataTable, string customSavePath = "{Namespace}.{Class}.cs")
-        
-        /// <summary> 
-        /// Emits a C# Assembly with classes whos public properties match the columns of the DataTable.
-        /// </summary>
-        /// <returns>The C# Type for the emitted class</returns>
-        public static Type ToAssembly(DataTable dataTable)      
-    }
-    
-    /// <summary>
-    /// SQL Query Helper Class
-    /// </summary>
-    public static class DatabaseQuery
-    {
-        /// <summary>
-        /// Runs a SQL query and returns the results as a List of the specified class
-        /// </summary>
-        /// <typeparam name="T">The type the result will be returned as.</typeparam>
-        /// <param name="connectionString">The SQL connection string.</param>
-        /// <param name="formatString_Query">A SQL command that will be passed to string.Format().</param>
-        /// <param name="formatString_Parameters">The parameters for string.Format().</param>
-        /// <returns>A List of classes that represent the records returned.</returns>
-        public static IList<T> ToClass<T>(string connectionString,
-                string formatString_Query, params object[] formatString_Parameters) where T : class, new()
-        
-        /// <summary>
-        /// Executes an SQL query and returns the results as a DataTable.
-        /// </summary>
-        /// <param name="connectionString">The SQL connection string.</param>
-        /// <param name="formatString_Query">A SQL command that will be passed to string.Format().</param>
-        /// <param name="formatString_Parameters">The parameters for string.Format().</param>
-        /// <returns>The results of the query as a DataTable.</returns>
-        public static DataTable ToDataTable(string connectionString,
-                string formatString_Query, params object[] formatString_Parameters)
-        
-        /// <summary>
-        /// Executes a non-query SQL command, such as INSERT or DELETE
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
-        /// <param name="FormatString_Command">The SQL command, as a format string.</param>
-        /// <param name="formatString_Parameters">The parameters for the format string.</param>
-        /// <returns>The number of rows affected, or -1 on errors.</returns>
-        public static int NonQueryCommand(string connectionString,
-               string FormatString_Command, params object[] formatString_Parameters)
-        
-        /// <summary>
-        /// Executes a query, and returns the first column of the first row in the result set returned by the query.
-        /// </summary>
-        /// <typeparam name="T">The type the result will be returned as.</typeparam>
-        /// <param name="connectionString">>The SQL connection string.</param>
-        /// <param name="formatString_Query">The SQL query as string.Format string.</param>
-        /// <param name="formatString_Parameters">The string.Format parameters.</param>
-        /// <returns>The  first column of the first row in the result, converted and casted to type T.</returns>
-        public static T ToScalarValue<T>(string connectionString,
-                string formatString_Query, params object[] formatString_Parameters)
-    }
-    
-    /// <summary>
-    /// SQL Script Generation Class
-    /// </summary>
-    public static class SQLScript
-    {
-        /// <summary>
-        /// Creates a SQL script that inserts the values of the specified classes' public properties into a table.
-        /// </summary>
-        public static string InsertInto<T>(params T[] ClassObjects) where T : class
-        
-        /// <summary>
-        /// Creates a SQL script that inserts the cell values of a DataTable's DataRows into a table.
-        /// </summary>
-        public static string InsertInto(DataTable Table)
-        
-        /// <summary>
-        /// Creates a SQL script that creates a table where the column names match the specified class's public properties.
-        /// </summary>
-        public static string CreateTable<T>(params T[] ClassObjects) where T : class
-        
-        /// <summary>
-        /// Creates a SQL script that creates a table where the columns matches that of the specified DataTable.
-        /// </summary>
-        public static string CreateTable(DataTable Table)
-    }
+	public static class Table
+	{
+		Table.FromClass<T>();
+		Table.FromClassInstance<T>(System.Data.DataTable, T);
+		Table.FromClassInstanceCollection<T>(T[]);
+		Table.FromQuery(string, string, object[]);
+		Table.ToAssembly(System.Data.DataTable);
+		Table.ToClassInstanceCollection<T>(System.Data.DataTable);
+		Table.ToCSharpCode(System.Data.DataTable, string);
+	}
+
+	public static class ClassInstance
+	{
+		FromQuery<T>(string, string, object[]);
+		FromDataTable<T>(System.Data.DataTable);
+		ToDataTable<T>();
+		ToDataTable<T>(T[]);
+		ToCSharpCode<T>(string);
+		ToAssembly<T>();	
+	}
+
+	public static class SQLScript
+	{
+		CreateTable<T>(T[]);
+		CreateTable(System.Data.DataTable);
+		InsertInto<T>(T[]);
+		InsertInto(System.Data.DataRow);
+	}
+
+	public static class SQLScript.StoredProcedure
+	{
+		SQLScript.StoredProcedure.Insert(System.Data.DataTable);
+		SQLScript.StoredProcedure.Update(System.Data.DataTable, string);
+		SQLScript.StoredProcedure.GenerateParameterList(System.Data.DataTable);
+	}
+	
+	public static class DatabaseQuery
+	{
+		ToClass<T>(string, string, object[]);
+		ToDataTable(string, string, object[]);
+		NonQueryCommand(string, string, object[]);
+		ToScalarValue<T>(string, string, object[]);
+	}
+
+	public static class Code
+	{
+		CreateClass(string);
+		CreateCode(System.Data.DataTable, string);
+		CreateCodeNamespace(System.Data.DataTable);
+		CreateConstructor(string);
+		CreateGeneratorOptions();
+		CreateProperty(string, System.Type);	
+	}
+	
+	public static class Helper
+	{
+		EscapeSingleQuotes(string);
+		ListToDelimitedString<T>(System.Collections.Generic.IEnumerable<T>, string, string, string);
+		RowToValueString(System.Data.DataRow);
+		TableToColumnsString(System.Data.DataTable);
+		IsValidDatatable(System.Data.DataTable, bool);
+		IsCollectionEmpty<T>(System.Collections.Generic.IEnumerable<T>);
+		IsNullableType(System.Type);
+	}
 }
