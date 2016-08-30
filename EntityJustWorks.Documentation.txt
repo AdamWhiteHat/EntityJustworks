@@ -64,4 +64,8 @@ namespace EntityJustWorks.SQL
 		IsCollectionEmpty<T>(System.Collections.Generic.IEnumerable<T>);
 		IsNullableType(System.Type);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 33f34c9cf0622fafe51b51b1e32dda8821aee41c
