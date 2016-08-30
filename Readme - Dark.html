@@ -5,216 +5,80 @@
 <title>Exported from Notepad++</title>
 <style type="text/css">
 span {
-	font-family: 'Consolas';
+	font-family: 'Courier New';
 	font-size: 10pt;
-	color: #FFFFFF;
+	color: #E0E2E4;
 }
 .sc0 {
 }
-.sc5 {
-	color: #C23B00;
-}
-.sc6 {
-}
-.sc10 {
-	color: #A8B3AB;
-}
-.sc11 {
-}
-.sc15 {
-	color: #666C68;
-}
-.sc16 {
-	color: #A39E64;
-}
 </style>
 </head>
-<body>
-<div style="float: left; white-space: pre; line-height: 1; background: #222C28; "><span class="sc0">
+<body style="background: #293134;">
+<div style="float: left; white-space: pre; line-height: 1; background: #293134; "><span class="sc0">namespace EntityJustWorks.SQL
+{
+    public static class Table
+    {
+        Table.FromClass&lt;T&gt;();
+        Table.FromClassInstance&lt;T&gt;(System.Data.DataTable, T);
+        Table.FromClassInstanceCollection&lt;T&gt;(T[]);
+        Table.FromQuery(string, string, object[]);
+        Table.ToAssembly(System.Data.DataTable);
+        Table.ToClassInstanceCollection&lt;T&gt;(System.Data.DataTable);
+        Table.ToCSharpCode(System.Data.DataTable, string);
+    }
 
-</span><span class="sc5">namespace</span><span class="sc0"> </span><span class="sc11">EntityJustWorks</span><span class="sc10">.</span><span class="sc11">SQL</span><span class="sc0">
-</span><span class="sc10">{</span><span class="sc0">
-    </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">    </span><span class="sc15">/// Convert to and from a CLR class instance
-</span><span class="sc0">    </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">    </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0"> </span><span class="sc11">ClassInstance</span><span class="sc0">
-    </span><span class="sc10">{</span><span class="sc0">
-        </span><span class="sc15">/// &lt;summary&gt; 
-</span><span class="sc0">        </span><span class="sc15">/// Generates the C# class code from a DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The C# class code as a string.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">FileInfo</span><span class="sc0"> </span><span class="sc11">ToCSharpCode</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">customSavePath</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc6">"{Namespace}.{Class}.cs"</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt; 
-</span><span class="sc0">        </span><span class="sc15">/// Emits a C# Assembly with classes whos public properties match the columns of the DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The C# Type for the emitted class&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">Type</span><span class="sc0"> </span><span class="sc11">ToAssembly</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;()</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Creates a DataTable from a class type's public properties and adds a new DataRow to the table for each class passed as a parameter.
-</span><span class="sc0">        </span><span class="sc15">/// The DataColumns of the table will match the name and type of the public properties.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="classInstanceCollection"&gt;A class or array of class to fill the DataTable with.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;A DataTable who's DataColumns match the name and type of each class T's public properties.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">ToDataTable</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc5">params</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">classInstanceCollection</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
+    public static class ClassInstance
+    {
+        FromQuery&lt;T&gt;(string, string, object[]);
+        FromDataTable&lt;T&gt;(System.Data.DataTable);
+        ToDataTable&lt;T&gt;();
+        ToDataTable&lt;T&gt;(T[]);
+        ToCSharpCode&lt;T&gt;(string);
+        ToAssembly&lt;T&gt;();    
+    }
+
+    public static class SQLScript
+    {
+        CreateTable&lt;T&gt;(T[]);
+        CreateTable(System.Data.DataTable);
+        InsertInto&lt;T&gt;(T[]);
+        InsertInto(System.Data.DataRow);
+    }
+
+    public static class SQLScript.StoredProcedure
+    {
+        SQLScript.StoredProcedure.Insert(System.Data.DataTable);
+        SQLScript.StoredProcedure.Update(System.Data.DataTable, string);
+        SQLScript.StoredProcedure.GenerateParameterList(System.Data.DataTable);
+    }
     
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Creates a DataTable from a class type's public properties. The DataColumns of the table will match the name and type of the public properties.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;typeparam name="T"&gt;The type of the class to create a DataTable from.&lt;/typeparam&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;A DataTable who's DataColumns match the name and type of each class T's public properties.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">ToDataTable</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;()</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
+    public static class DatabaseQuery
+    {
+        ToClass&lt;T&gt;(string, string, object[]);
+        ToDataTable(string, string, object[]);
+        NonQueryCommand(string, string, object[]);
+        ToScalarValue&lt;T&gt;(string, string, object[]);
+    }
+
+    public static class Code
+    {
+        CreateClass(string);
+        CreateCode(System.Data.DataTable, string);
+        CreateCodeNamespace(System.Data.DataTable);
+        CreateConstructor(string);
+        CreateGeneratorOptions();
+        CreateProperty(string, System.Type);    
+    }
     
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Executes an SQL query and returns the results as a DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="connectionString"&gt;The SQL connection string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Query"&gt;A SQL command that will be passed to string.Format().&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Parameters"&gt;The parameters for string.Format().&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The results of the query as a DataTable.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">IList</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;</span><span class="sc0"> </span><span class="sc11">FromQuery</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">connectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">formatString_Query</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">params</span><span class="sc0"> </span><span class="sc5">object</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">formatString_Parameters</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">new</span><span class="sc10">()</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Fills properties of a class from a row of a DataTable where the name of the property matches the column name from that DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// It does this for each row in the DataTable, returning a List of classes.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;typeparam name="T"&gt;The class type that is to be returned.&lt;/typeparam&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="Table"&gt;DataTable to fill from.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;A list of ClassType with its properties set to the data from the matching columns from the DataTable.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">IList</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;</span><span class="sc0"> </span><span class="sc11">FromDataTable</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">dataTable</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">new</span><span class="sc10">()</span><span class="sc0">
-        </span><span class="sc10">{</span><span class="sc0">
-            </span><span class="sc5">return</span><span class="sc0"> </span><span class="sc11">Table</span><span class="sc10">.</span><span class="sc11">ToClassInstanceCollection</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc11">dataTable</span><span class="sc10">);</span><span class="sc0">
-        </span><span class="sc10">}</span><span class="sc0">
-    </span><span class="sc10">}</span><span class="sc0">
-
-    </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">    </span><span class="sc15">/// SQL Query Helper Class
-</span><span class="sc0">    </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">    </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0"> </span><span class="sc11">DatabaseQuery</span><span class="sc0">
-    </span><span class="sc10">{</span><span class="sc0">
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Runs a SQL query and returns the results as a List of the specified class
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;typeparam name="T"&gt;The type the result will be returned as.&lt;/typeparam&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="connectionString"&gt;The SQL connection string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Query"&gt;A SQL command that will be passed to string.Format().&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Parameters"&gt;The parameters for string.Format().&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;A List of classes that represent the records returned.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">IList</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;</span><span class="sc0"> </span><span class="sc11">ToClass</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">connectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">formatString_Query</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">params</span><span class="sc0"> </span><span class="sc5">object</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">formatString_Parameters</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">new</span><span class="sc10">()</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Executes an SQL query and returns the results as a DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="connectionString"&gt;The SQL connection string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Query"&gt;A SQL command that will be passed to string.Format().&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Parameters"&gt;The parameters for string.Format().&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The results of the query as a DataTable.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">ToDataTable</span><span class="sc10">(</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">connectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">formatString_Query</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">params</span><span class="sc0"> </span><span class="sc5">object</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">formatString_Parameters</span><span class="sc10">)</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Executes a non-query SQL command, such as INSERT or DELETE
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="connectionString"&gt;The connection string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="FormatString_Command"&gt;The SQL command, as a format string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Parameters"&gt;The parameters for the format string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The number of rows affected, or -1 on errors.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">int</span><span class="sc0"> </span><span class="sc11">NonQueryCommand</span><span class="sc10">(</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">connectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">FormatString_Command</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">params</span><span class="sc0"> </span><span class="sc5">object</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">formatString_Parameters</span><span class="sc10">)</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Executes a query, and returns the first column of the first row in the result set returned by the query.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;typeparam name="T"&gt;The type the result will be returned as.&lt;/typeparam&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="connectionString"&gt;&gt;The SQL connection string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Query"&gt;The SQL query as string.Format string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Parameters"&gt;The string.Format parameters.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The  first column of the first row in the result, converted and casted to type T.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc11">ToScalarValue</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">connectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">formatString_Query</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">params</span><span class="sc0"> </span><span class="sc5">object</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">formatString_Parameters</span><span class="sc10">)</span><span class="sc0">
-    </span><span class="sc10">}</span><span class="sc0">
-
-    </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">    </span><span class="sc15">/// SQL Script Generation Class
-</span><span class="sc0">    </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">    </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0"> </span><span class="sc11">SQLScript</span><span class="sc0">
-    </span><span class="sc10">{</span><span class="sc0">
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Creates a SQL script that inserts the values of the specified classes' public properties into a table.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">InsertInto</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc5">params</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">ClassObjects</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Creates a SQL script that inserts the cell values of a DataTable's DataRows into a table.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">InsertInto</span><span class="sc10">(</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">Table</span><span class="sc10">)</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Creates a SQL script that creates a table where the column names match the specified class's public properties.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">CreateTable</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc5">params</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">ClassObjects</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Creates a SQL script that creates a table where the columns matches that of the specified DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">CreateTable</span><span class="sc10">(</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">Table</span><span class="sc10">)</span><span class="sc0">
-    </span><span class="sc10">}</span><span class="sc0">
-
-    </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">    </span><span class="sc15">/// Convert to and from a System.Data.DataTable
-</span><span class="sc0">    </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">    </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0"> </span><span class="sc11">Table</span><span class="sc0">
-    </span><span class="sc10">{</span><span class="sc0">
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Creates a DataTable from a class type's public properties and adds a new DataRow to the table for each class passed as a parameter.
-</span><span class="sc0">        </span><span class="sc15">/// The DataColumns of the table will match the name and type of the public properties.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="classInstanceCollection"&gt;A class or array of class to fill the DataTable with.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;A DataTable who's DataColumns match the name and type of each class T's public properties.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">FromClassInstanceCollection</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc5">params</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">classInstanceCollection</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Creates a DataTable from a class type's public properties. The DataColumns of the table will match the name and type of the public properties.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;typeparam name="T"&gt;The type of the class to create a DataTable from.&lt;/typeparam&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;A DataTable who's DataColumns match the name and type of each class T's public properties.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">FromClass</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;()</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Adds a DataRow to a DataTable from the public properties of a class.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="dataTable"&gt;A reference to the DataTable to insert the DataRow into.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="classObject"&gt;The class containing the data to fill the DataRow from.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The DataTable in the parameters. This return instance is superflowous; &lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">FromClassInstance</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">dataTable</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc11">classObject</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Fills properties of a class from a row of a DataTable where the name of the property matches the column name from that DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// It does this for each row in the DataTable, returning a List of classes.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;typeparam name="T"&gt;The class type that is to be returned.&lt;/typeparam&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="dataTable"&gt;DataTable to fill from.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;A list of ClassType with its properties set to the data from the matching columns from the DataTable.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">IList</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;</span><span class="sc0"> </span><span class="sc11">ToClassInstanceCollection</span><span class="sc10">&lt;</span><span class="sc11">T</span><span class="sc10">&gt;(</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">dataTable</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc11">where</span><span class="sc0"> </span><span class="sc11">T</span><span class="sc0"> </span><span class="sc10">:</span><span class="sc0"> </span><span class="sc16">class</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">new</span><span class="sc10">()</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// Executes an SQL query and returns the results as a DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="connectionString"&gt;The SQL connection string.&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Query"&gt;A SQL command that will be passed to string.Format().&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;param name="formatString_Parameters"&gt;The parameters for string.Format().&lt;/param&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The results of the query as a DataTable.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">FromQuery</span><span class="sc10">(</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">connectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">formatString_Query</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc5">params</span><span class="sc0"> </span><span class="sc5">object</span><span class="sc10">[]</span><span class="sc0"> </span><span class="sc11">formatString_Parameters</span><span class="sc10">)</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt; 
-</span><span class="sc0">        </span><span class="sc15">/// Generates the C# class code from a DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The C# class code as a string.&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">FileInfo</span><span class="sc0"> </span><span class="sc11">ToCSharpCode</span><span class="sc10">(</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">dataTable</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">customSavePath</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc6">"{Namespace}.{Class}.cs"</span><span class="sc10">)</span><span class="sc0">
-        
-        </span><span class="sc15">/// &lt;summary&gt; 
-</span><span class="sc0">        </span><span class="sc15">/// Emits a C# Assembly with classes whos public properties match the columns of the DataTable.
-</span><span class="sc0">        </span><span class="sc15">/// &lt;/summary&gt;
-</span><span class="sc0">        </span><span class="sc15">/// &lt;returns&gt;The C# Type for the emitted class&lt;/returns&gt;
-</span><span class="sc0">        </span><span class="sc5">public</span><span class="sc0"> </span><span class="sc16">static</span><span class="sc0"> </span><span class="sc11">Type</span><span class="sc0"> </span><span class="sc11">ToAssembly</span><span class="sc10">(</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">dataTable</span><span class="sc10">)</span><span class="sc0">      
-    </span><span class="sc10">}</span><span class="sc0">
-</span><span class="sc10">}</span></div></body>
+    public static class Helper
+    {
+        EscapeSingleQuotes(string);
+        ListToDelimitedString&lt;T&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;, string, string, string);
+        RowToValueString(System.Data.DataRow);
+        TableToColumnsString(System.Data.DataTable);
+        IsValidDatatable(System.Data.DataTable, bool);
+        IsCollectionEmpty&lt;T&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;);
+        IsNullableType(System.Type);
+    }
+}</span></div></body>
 </html>

@@ -1,31 +1,65 @@
-// An example class instance 
-Order classInstance = Order.Create();
+DataTable from class type (using generics):
+|
+|	DataTable dataTable = Table.FromClass();
+|	string createTableFromTable = SQLScript.CreateTable(dataTable);
+|_
 
-// DataTable from class 
-DataTable dataTable = Table.FromClass<Order>();
-string createTableFromTable = SQLScript.CreateTable(dataTable);
-// - or -
-string insertIntoFromClass = SQLScript.InsertInto(classInstance);
 
-// Populate a List<> of class from a DataTable 
-IList<Order> orderList = Table.ToClassInstanceCollection<Order>(tableWithManyRecords);
+Generate scripts to create stored procedures:
+|
+|	File.WriteAllText("sp_InsertRow.sql", StoredProcedure.Insert(dataTable);
+|	File.WriteAllText("sp_ActivateAccount.sql", StoredProcedure.Update, "Active = 0");
+|_
 
-// You can either write out the SQL script to a file...
-File.WriteAllText("create_table.sql",insertIntoFromClass);
-// Or use it directly in 
-DatabaseQuery.NonQueryCommand(ConnectionString, insertIntoFromClass);
 
-// DataTable from SQL query 
-DataTable queryTable = DatabaseQuery.ToDataTable(ConnectionString, "SELECT TOP 1 * FROM [{0}]", TableName);
+Instance of class to an INSERT INTO script:
+|
+|	PurchaseOrder classInstance = new PurchaseOrder();
+|	string insertIntoFromClass = SQLScript.InsertInto(classInstance);
+|_
 
-// Check that our DataTable is good 
-if (!Helper.IsValidDatatable(dataTable))
-	return;
-if (!Helper.IsValidDatatable(queryTable))
-	return;
 
-// Emit a dynamic assembly where the class's public properties' names match the DataTable's ColumnNames 
-Type datatableAssembly = Table.ToAssembly(dataTable);
+Populate a List<> of your data class from a DataTable using reflection, populating public properties with names identical to the column names:
+|
+|	IList orderList = Table.ToClassInstanceCollection(tableWithManyRecords);
+|_
 
-// Generate the C# class as C# code 
-FileInfo csCodeFile = Table.ToCSharpCode(queryTable);
+
+Write out SQL script to a file:
+|
+|	File.WriteAllText("create_table.sql",SQLScript.CreateTable(dataTable));
+|_
+
+
+Or use it directly in a NonQueryCommand:
+|
+|	DatabaseQuery.NonQueryCommand(ConnectionString, insertIntoFromClass);
+|_
+
+
+DataTable from a query:
+|
+|	DataTable queryTable = DatabaseQuery.ToDataTable(ConnectionString, "SELECT TOP 1 * FROM [{0}]", TableName);
+|_
+
+
+Check that our DataTable is valid:
+|
+|	if (!Helper.IsValidDatatable(dataTable))
+|		return;
+|	if (!Helper.IsValidDatatable(queryTable))
+|		return;
+|_
+
+
+
+Emit a dynamic assembly, using Reflection.Emit, where the class's public properties' names match the DataTable's ColumnNames:
+|
+|	Type datatableAssembly = Table.ToAssembly(dataTable);
+|_
+
+
+Generate the C# class as C# code using code DOM:
+|
+|	FileInfo csCodeFile = Table.ToCSharpCode(queryTable);
+|_
