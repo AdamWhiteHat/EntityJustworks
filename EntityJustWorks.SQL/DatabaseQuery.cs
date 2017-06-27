@@ -16,7 +16,7 @@ namespace EntityJustWorks.SQL
 	/// <summary>
 	/// SQL Query Helper Class
 	/// </summary>
-	public static class DatabaseQuery
+	public static partial class DatabaseQuery
 	{
 		/// <summary>
 		/// Runs a SQL query and returns the results as a List of the specified class

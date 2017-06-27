@@ -139,7 +139,7 @@ namespace EntityJustWorks.SQL
 		/// <summary>
 		/// Returns the SQL data type equivalent, as a string for use in SQL script generation methods.
 		/// </summary>
-		protected static string GetSQLTypeAsString(Type DataType)
+		private static string GetSQLTypeAsString(Type DataType)
 		{
 			switch (DataType.Name)
 			{
@@ -164,7 +164,7 @@ namespace EntityJustWorks.SQL
 			}
 		}
 
-		protected static SqlDbType GetSqlDbType(Type DataType)
+		private static SqlDbType GetSqlDbType(Type DataType)
 		{
 			switch (DataType.Name)
 			{
