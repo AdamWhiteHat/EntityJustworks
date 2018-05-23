@@ -65,13 +65,13 @@ namespace EntityJustWorks.SQL
 {
 	public static class Table
 	{
-		Table.FromClass<T>();
-		Table.FromClassInstance<T>(System.Data.DataTable, T);
-		Table.FromClassInstanceCollection<T>(T[]);
-		Table.FromQuery(string, string, object[]);
-		Table.ToAssembly(System.Data.DataTable);
-		Table.ToClassInstanceCollection<T>(System.Data.DataTable);
-		Table.ToCSharpCode(System.Data.DataTable, string);
+		FromClass<T>();
+		FromClassInstance<T>(System.Data.DataTable, T);
+		FromClassInstanceCollection<T>(T[]);
+		FromQuery(string, string, object[]);
+		ToAssembly(System.Data.DataTable);
+		ToClassInstanceCollection<T>(System.Data.DataTable);
+		ToCSharpCode(System.Data.DataTable, string);
 	}
 
 	public static class ClassInstance
@@ -94,9 +94,9 @@ namespace EntityJustWorks.SQL
 
 	public static class SQLScript.StoredProcedure
 	{
-		SQLScript.StoredProcedure.Insert(System.Data.DataTable);
-		SQLScript.StoredProcedure.Update(System.Data.DataTable, string);
-		SQLScript.StoredProcedure.GenerateParameterList(System.Data.DataTable);
+		StoredProcedure.Insert(System.Data.DataTable);
+		StoredProcedure.Update(System.Data.DataTable, string);
+		StoredProcedure.GenerateParameterList(System.Data.DataTable);
 	}
 	
 	public static class DatabaseQuery
@@ -138,7 +138,7 @@ namespace EntityJustWorks.SQL
 
 Links
 ===
-   * http://www.csharpprogramming.tips - My C# programming blog
+   * https://csharpcodewhisperer.blogspot.com - My C# programming blog
    * https://entityjustworks.codeplex.com - EntityJustworks on CodePlex
    * http://adam-rakaska.codes - My software gallery
 <br />
