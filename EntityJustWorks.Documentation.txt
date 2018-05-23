@@ -31,9 +31,9 @@ namespace EntityJustWorks.SQL
 
 	public static class SQLScript.StoredProcedure
 	{
-		SQLScript.StoredProcedure.Insert(System.Data.DataTable);
-		SQLScript.StoredProcedure.Update(System.Data.DataTable, string);
-		SQLScript.StoredProcedure.GenerateParameterList(System.Data.DataTable);
+		StoredProcedure.Insert(System.Data.DataTable);
+		StoredProcedure.Update(System.Data.DataTable, string);
+		StoredProcedure.GenerateParameterList(System.Data.DataTable);
 	}
 	
 	public static class DatabaseQuery
