@@ -18,13 +18,13 @@ span {
 {
     public static class Table
     {
-        Table.FromClass&lt;T&gt;();
-        Table.FromClassInstance&lt;T&gt;(System.Data.DataTable, T);
-        Table.FromClassInstanceCollection&lt;T&gt;(T[]);
-        Table.FromQuery(string, string, object[]);
-        Table.ToAssembly(System.Data.DataTable);
-        Table.ToClassInstanceCollection&lt;T&gt;(System.Data.DataTable);
-        Table.ToCSharpCode(System.Data.DataTable, string);
+        FromClass&lt;T&gt;();
+        FromClassInstance&lt;T&gt;(System.Data.DataTable, T);
+        FromClassInstanceCollection&lt;T&gt;(T[]);
+        FromQuery(string, string, object[]);
+        ToAssembly(System.Data.DataTable);
+        ToClassInstanceCollection&lt;T&gt;(System.Data.DataTable);
+        ToCSharpCode(System.Data.DataTable, string);
     }
 
     public static class ClassInstance
@@ -47,9 +47,9 @@ span {
 
     public static class SQLScript.StoredProcedure
     {
-        SQLScript.StoredProcedure.Insert(System.Data.DataTable);
-        SQLScript.StoredProcedure.Update(System.Data.DataTable, string);
-        SQLScript.StoredProcedure.GenerateParameterList(System.Data.DataTable);
+        StoredProcedure.Insert(System.Data.DataTable);
+        StoredProcedure.Update(System.Data.DataTable, string);
+        StoredProcedure.GenerateParameterList(System.Data.DataTable);
     }
     
     public static class DatabaseQuery
