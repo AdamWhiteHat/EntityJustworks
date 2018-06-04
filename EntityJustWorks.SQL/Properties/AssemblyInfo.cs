@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("EntityJustWorks")]
-[assembly: AssemblyDescription("http://www.csharpprogramming.tips")]
+[assembly: AssemblyDescription("https://csharpcodewhisperer.blogspot.com")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("http://www.csharpprogramming.tips")]
+[assembly: AssemblyCompany("https://csharpcodewhisperer.blogspot.com")]
 [assembly: AssemblyProduct("EntityJustWorks")]
-[assembly: AssemblyCopyright("Copyright © Adam Rakaska, 2015. CSharpProgramming.Tips")]
+[assembly: AssemblyCopyright("Copyright © Adam Rakaska, 2018. CSharpProgramming.Tips")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

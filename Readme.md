@@ -140,7 +140,7 @@ Links
 ===
    * https://csharpcodewhisperer.blogspot.com - My C# programming blog
    * https://entityjustworks.codeplex.com - EntityJustworks on CodePlex
-   * http://adam-rakaska.codes - My software gallery
+   * https://github.com/AdamRakaska - My GitHub
 <br />
 <br />
 <br />

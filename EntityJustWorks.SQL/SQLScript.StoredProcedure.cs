@@ -3,8 +3,10 @@
  * 
  * 
  *  Full code and more available @
- *    http://www.csharpprogramming.tips
- * 
+ *    https://csharpcodewhisperer.blogspot.com
+ *    
+ *  Or check for updates @
+ *    https://github.com/AdamRakaska/EntityJustworks
  * 
  */
 using System;
