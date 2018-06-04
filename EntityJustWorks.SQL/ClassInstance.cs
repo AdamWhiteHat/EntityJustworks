@@ -27,7 +27,7 @@ namespace EntityJustWorks.SQL
 		/// <returns>The C# class code as a string.</returns>
 		public static FileInfo ToCSharpCode<T>(string customSavePath = "{Namespace}.{Class}.cs") where T : class
 		{
-			DataTable classTable = Table.FromClass<T>();
+			DataTable classTable = Table.FromClassType<T>();
 			return Table.ToCSharpCode(classTable, customSavePath);
 		}
 
@@ -37,7 +37,7 @@ namespace EntityJustWorks.SQL
 		/// <returns>The C# Type for the emitted class</returns>
 		public static Type ToAssembly<T>() where T : class
 		{
-			DataTable classTable = Table.FromClass<T>();
+			DataTable classTable = Table.FromClassType<T>();
 			return Table.ToAssembly(classTable);
 		}
 
@@ -59,7 +59,7 @@ namespace EntityJustWorks.SQL
 		/// <returns>A DataTable who's DataColumns match the name and type of each class T's public properties.</returns>
 		public static DataTable ToDataTable<T>() where T : class
 		{
-			return Table.FromClass<T>();
+			return Table.FromClassType<T>();
 		}
 
 		/// <summary>

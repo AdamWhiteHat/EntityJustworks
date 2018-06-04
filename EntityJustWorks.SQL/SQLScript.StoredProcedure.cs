@@ -25,7 +25,7 @@ namespace EntityJustWorks.SQL
 			/// <summary>
 			/// Returns an SQL script that creates an INSERT INTO stored procedure from a DataTable, with the parameter names matching the ColumnNames 
 			/// </summary>
-            public static string Insert(DataTable Table)
+            public static string InsertInto(DataTable Table)
             {
                 return GenerateStoredProcedure(Table, GenerateInsertInto(Table));
             }
@@ -119,7 +119,7 @@ namespace EntityJustWorks.SQL
 
                 procedureTable.Rows.Add(parameterRow);
 
-                string body = InsertInto(procedureTable);
+                string body = SQLScript.InsertInto(procedureTable);
                 body = body.Replace("'", "");
 
                 return body;
