@@ -10,3 +10,6 @@ EntityJustWorks.SQL/obj/*
 EntityJustWorks.SQL/obj/Debug/TemporaryGeneratedFile_*.cs
 *.bak
 *.zip
+/EntityJustWorks.SQL/bin/Release
+/EntityJustworksGUI/bin
+/EntityJustworksGUI/obj
