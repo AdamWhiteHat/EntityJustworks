@@ -1,15 +1,13 @@
 *.pdb
-EntityJustWorks.SQL/bin/Debug/*
-EntityJustWorks.SQL/obj/*
+EntityJustWorks.SQL/bin
+EntityJustWorks.SQL/obj
 *.jrs
 *.chk
 *.log
 *.ide
 *.cache
 *.suo
-EntityJustWorks.SQL/obj/Debug/TemporaryGeneratedFile_*.cs
 *.bak
 *.zip
-/EntityJustWorks.SQL/bin/Release
 /EntityJustworksGUI/bin
 /EntityJustworksGUI/obj

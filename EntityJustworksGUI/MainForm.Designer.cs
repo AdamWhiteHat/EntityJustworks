@@ -40,59 +40,60 @@
 			this.btnBuild_Assembly = new System.Windows.Forms.Button();
 			this.btnBuild_CSharpCode = new System.Windows.Forms.Button();
 			this.groupScript = new System.Windows.Forms.GroupBox();
+			this.btnScript_InsertIntoParameterized = new System.Windows.Forms.Button();
 			this.btnScript_DataBase = new System.Windows.Forms.Button();
 			this.btnScript_StoredProcedure = new System.Windows.Forms.Button();
 			this.btnScript_CreateTable = new System.Windows.Forms.Button();
 			this.btnScript_InsertInto = new System.Windows.Forms.Button();
-			this.groupBox = new System.Windows.Forms.GroupBox();
+			this.groupBoxCommands = new System.Windows.Forms.GroupBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.tbOutputFilename = new System.Windows.Forms.TextBox();
 			this.tbTableName = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.groupBoxConnect = new System.Windows.Forms.GroupBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.tbEncodeSource = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.tbEncodeOutput = new System.Windows.Forms.TextBox();
-			this.btnEncode = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.btnScript_InsertIntoParameterized = new System.Windows.Forms.Button();
+			this.btnGenerateSampleData = new System.Windows.Forms.Button();
 			this.groupCode.SuspendLayout();
 			this.groupScript.SuspendLayout();
-			this.groupBox.SuspendLayout();
+			this.groupBoxCommands.SuspendLayout();
+			this.groupBoxConnect.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbConnectionString
 			// 
-			this.tbConnectionString.Location = new System.Drawing.Point(12, 28);
+			this.tbConnectionString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbConnectionString.Location = new System.Drawing.Point(10, 43);
 			this.tbConnectionString.Name = "tbConnectionString";
-			this.tbConnectionString.Size = new System.Drawing.Size(522, 20);
+			this.tbConnectionString.Size = new System.Drawing.Size(552, 20);
 			this.tbConnectionString.TabIndex = 0;
-			this.tbConnectionString.Text = "Server=DMX-DT010;Database=DB_Into_Interlink;User ID=AppUser;Password=abc123;";
 			// 
 			// tbSelectCommand
 			// 
-			this.tbSelectCommand.Location = new System.Drawing.Point(540, 71);
+			this.tbSelectCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbSelectCommand.Location = new System.Drawing.Point(10, 134);
+			this.tbSelectCommand.Multiline = true;
 			this.tbSelectCommand.Name = "tbSelectCommand";
-			this.tbSelectCommand.Size = new System.Drawing.Size(275, 20);
+			this.tbSelectCommand.Size = new System.Drawing.Size(552, 43);
 			this.tbSelectCommand.TabIndex = 1;
 			// 
-			// tbOutputText
+			// tbOutput
 			// 
-			this.tbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.tbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbOutput.Location = new System.Drawing.Point(4, 268);
+			this.tbOutput.Location = new System.Drawing.Point(4, 457);
 			this.tbOutput.Multiline = true;
-			this.tbOutput.Name = "tbOutputText";
+			this.tbOutput.Name = "tbOutput";
 			this.tbOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbOutput.Size = new System.Drawing.Size(812, 192);
+			this.tbOutput.Size = new System.Drawing.Size(580, 152);
 			this.tbOutput.TabIndex = 2;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 12);
+			this.label1.Location = new System.Drawing.Point(6, 27);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(92, 13);
 			this.label1.TabIndex = 3;
@@ -101,7 +102,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(536, 55);
+			this.label2.Location = new System.Drawing.Point(6, 118);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(100, 13);
 			this.label2.TabIndex = 4;
@@ -109,7 +110,7 @@
 			// 
 			// btnSQLConnect
 			// 
-			this.btnSQLConnect.Location = new System.Drawing.Point(711, 26);
+			this.btnSQLConnect.Location = new System.Drawing.Point(9, 183);
 			this.btnSQLConnect.Name = "btnSQLConnect";
 			this.btnSQLConnect.Size = new System.Drawing.Size(104, 23);
 			this.btnSQLConnect.TabIndex = 5;
@@ -186,6 +187,16 @@
 			this.groupScript.TabStop = false;
 			this.groupScript.Text = "SQL Script Builder:";
 			// 
+			// btnScript_InsertIntoParameterized
+			// 
+			this.btnScript_InsertIntoParameterized.Location = new System.Drawing.Point(128, 48);
+			this.btnScript_InsertIntoParameterized.Name = "btnScript_InsertIntoParameterized";
+			this.btnScript_InsertIntoParameterized.Size = new System.Drawing.Size(52, 23);
+			this.btnScript_InsertIntoParameterized.TabIndex = 7;
+			this.btnScript_InsertIntoParameterized.Text = "PARM";
+			this.btnScript_InsertIntoParameterized.UseVisualStyleBackColor = true;
+			this.btnScript_InsertIntoParameterized.Click += new System.EventHandler(this.btnScript_InsertIntoParameterized_Click);
+			// 
 			// btnScript_DataBase
 			// 
 			this.btnScript_DataBase.Location = new System.Drawing.Point(20, 96);
@@ -226,23 +237,26 @@
 			this.btnScript_InsertInto.UseVisualStyleBackColor = true;
 			this.btnScript_InsertInto.Click += new System.EventHandler(this.btnScript_InsertInto_Click);
 			// 
-			// groupBox
+			// groupBoxCommands
 			// 
-			this.groupBox.Controls.Add(this.label3);
-			this.groupBox.Controls.Add(this.tbOutputFilename);
-			this.groupBox.Controls.Add(this.groupCode);
-			this.groupBox.Controls.Add(this.groupScript);
-			this.groupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.groupBox.Location = new System.Drawing.Point(16, 56);
-			this.groupBox.Name = "groupBox";
-			this.groupBox.Size = new System.Drawing.Size(444, 208);
-			this.groupBox.TabIndex = 7;
-			this.groupBox.TabStop = false;
+			this.groupBoxCommands.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBoxCommands.Controls.Add(this.label3);
+			this.groupBoxCommands.Controls.Add(this.tbOutputFilename);
+			this.groupBoxCommands.Controls.Add(this.groupCode);
+			this.groupBoxCommands.Controls.Add(this.groupScript);
+			this.groupBoxCommands.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.groupBoxCommands.Location = new System.Drawing.Point(12, 243);
+			this.groupBoxCommands.Name = "groupBoxCommands";
+			this.groupBoxCommands.Size = new System.Drawing.Size(568, 208);
+			this.groupBoxCommands.TabIndex = 7;
+			this.groupBoxCommands.TabStop = false;
+			this.groupBoxCommands.Text = "2) Execute Commands";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(16, 164);
+			this.label3.Location = new System.Drawing.Point(7, 164);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(84, 13);
 			this.label3.TabIndex = 9;
@@ -250,138 +264,87 @@
 			// 
 			// tbOutputFilename
 			// 
-			this.tbOutputFilename.Location = new System.Drawing.Point(20, 180);
+			this.tbOutputFilename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbOutputFilename.Location = new System.Drawing.Point(10, 180);
 			this.tbOutputFilename.Name = "tbOutputFilename";
 			this.tbOutputFilename.ReadOnly = true;
-			this.tbOutputFilename.Size = new System.Drawing.Size(404, 20);
+			this.tbOutputFilename.Size = new System.Drawing.Size(552, 20);
 			this.tbOutputFilename.TabIndex = 8;
 			// 
 			// tbTableName
 			// 
-			this.tbTableName.Location = new System.Drawing.Point(540, 28);
+			this.tbTableName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbTableName.Location = new System.Drawing.Point(10, 91);
 			this.tbTableName.Name = "tbTableName";
-			this.tbTableName.Size = new System.Drawing.Size(106, 20);
+			this.tbTableName.Size = new System.Drawing.Size(237, 20);
 			this.tbTableName.TabIndex = 8;
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(536, 12);
+			this.label4.Location = new System.Drawing.Point(6, 75);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(66, 13);
 			this.label4.TabIndex = 9;
 			this.label4.Text = "Table name:";
 			// 
+			// groupBoxConnect
+			// 
+			this.groupBoxConnect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBoxConnect.Controls.Add(this.label5);
+			this.groupBoxConnect.Controls.Add(this.btnGenerateSampleData);
+			this.groupBoxConnect.Controls.Add(this.label1);
+			this.groupBoxConnect.Controls.Add(this.tbConnectionString);
+			this.groupBoxConnect.Controls.Add(this.label4);
+			this.groupBoxConnect.Controls.Add(this.tbTableName);
+			this.groupBoxConnect.Controls.Add(this.tbSelectCommand);
+			this.groupBoxConnect.Controls.Add(this.label2);
+			this.groupBoxConnect.Controls.Add(this.btnSQLConnect);
+			this.groupBoxConnect.Location = new System.Drawing.Point(12, 12);
+			this.groupBoxConnect.Name = "groupBoxConnect";
+			this.groupBoxConnect.Size = new System.Drawing.Size(568, 216);
+			this.groupBoxConnect.TabIndex = 18;
+			this.groupBoxConnect.TabStop = false;
+			this.groupBoxConnect.Text = "1) Connect to Database";
+			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(501, 136);
+			this.label5.Location = new System.Drawing.Point(119, 188);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(30, 13);
-			this.label5.TabIndex = 13;
-			this.label5.Text = "From";
+			this.label5.Size = new System.Drawing.Size(28, 13);
+			this.label5.TabIndex = 11;
+			this.label5.Text = "- or -";
 			// 
-			// tbEncodeSource
+			// btnGenerateSampleData
 			// 
-			this.tbEncodeSource.Location = new System.Drawing.Point(505, 152);
-			this.tbEncodeSource.Name = "tbEncodeSource";
-			this.tbEncodeSource.Size = new System.Drawing.Size(228, 20);
-			this.tbEncodeSource.TabIndex = 12;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(501, 179);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(20, 13);
-			this.label6.TabIndex = 11;
-			this.label6.Text = "To";
-			// 
-			// tbEncodeOutput
-			// 
-			this.tbEncodeOutput.Location = new System.Drawing.Point(505, 195);
-			this.tbEncodeOutput.Name = "tbEncodeOutput";
-			this.tbEncodeOutput.Size = new System.Drawing.Size(275, 20);
-			this.tbEncodeOutput.TabIndex = 10;
-			// 
-			// btnEncode
-			// 
-			this.btnEncode.Location = new System.Drawing.Point(739, 136);
-			this.btnEncode.Name = "btnEncode";
-			this.btnEncode.Size = new System.Drawing.Size(67, 23);
-			this.btnEncode.TabIndex = 14;
-			this.btnEncode.Text = "Base64";
-			this.btnEncode.UseVisualStyleBackColor = true;
-			this.btnEncode.Click += new System.EventHandler(this.decode_Click);
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(529, 221);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(63, 23);
-			this.button2.TabIndex = 15;
-			this.button2.Text = "ArrayStr";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.decode_Click);
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(663, 221);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(63, 23);
-			this.button3.TabIndex = 17;
-			this.button3.Text = "DeArrayStr";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.decode_Click);
-			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(739, 165);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(67, 23);
-			this.button4.TabIndex = 16;
-			this.button4.Text = "DeBase64";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.decode_Click);
-			// 
-			// btnScript_InsertIntoParameterized
-			// 
-			this.btnScript_InsertIntoParameterized.Location = new System.Drawing.Point(128, 48);
-			this.btnScript_InsertIntoParameterized.Name = "btnScript_InsertIntoParameterized";
-			this.btnScript_InsertIntoParameterized.Size = new System.Drawing.Size(52, 23);
-			this.btnScript_InsertIntoParameterized.TabIndex = 7;
-			this.btnScript_InsertIntoParameterized.Text = "PARM";
-			this.btnScript_InsertIntoParameterized.UseVisualStyleBackColor = true;
-			this.btnScript_InsertIntoParameterized.Click += new System.EventHandler(this.btnScript_InsertIntoParameterized_Click);
+			this.btnGenerateSampleData.Location = new System.Drawing.Point(153, 183);
+			this.btnGenerateSampleData.Name = "btnGenerateSampleData";
+			this.btnGenerateSampleData.Size = new System.Drawing.Size(214, 23);
+			this.btnGenerateSampleData.TabIndex = 10;
+			this.btnGenerateSampleData.Text = "Generate Sample DataTable Instead";
+			this.btnGenerateSampleData.UseVisualStyleBackColor = true;
+			this.btnGenerateSampleData.Click += new System.EventHandler(this.btnGenerateSampleData_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(818, 463);
-			this.Controls.Add(this.button3);
-			this.Controls.Add(this.button4);
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.btnEncode);
-			this.Controls.Add(this.label5);
-			this.Controls.Add(this.tbEncodeSource);
-			this.Controls.Add(this.label6);
-			this.Controls.Add(this.tbEncodeOutput);
-			this.Controls.Add(this.label4);
-			this.Controls.Add(this.tbTableName);
-			this.Controls.Add(this.groupBox);
-			this.Controls.Add(this.btnSQLConnect);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
+			this.ClientSize = new System.Drawing.Size(586, 612);
+			this.Controls.Add(this.groupBoxConnect);
+			this.Controls.Add(this.groupBoxCommands);
 			this.Controls.Add(this.tbOutput);
-			this.Controls.Add(this.tbSelectCommand);
-			this.Controls.Add(this.tbConnectionString);
 			this.Name = "MainForm";
 			this.Text = "EntityJustWorks GUI";
 			this.groupCode.ResumeLayout(false);
 			this.groupScript.ResumeLayout(false);
-			this.groupBox.ResumeLayout(false);
-			this.groupBox.PerformLayout();
+			this.groupBoxCommands.ResumeLayout(false);
+			this.groupBoxCommands.PerformLayout();
+			this.groupBoxConnect.ResumeLayout(false);
+			this.groupBoxConnect.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -405,20 +368,15 @@
         private System.Windows.Forms.Button btnScript_StoredProcedure;
         private System.Windows.Forms.Button btnScript_CreateTable;
         private System.Windows.Forms.Button btnScript_InsertInto;
-        private System.Windows.Forms.GroupBox groupBox;
+        private System.Windows.Forms.GroupBox groupBoxCommands;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbOutputFilename;
         private System.Windows.Forms.TextBox tbTableName;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbEncodeSource;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbEncodeOutput;
-        private System.Windows.Forms.Button btnEncode;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button btnScript_InsertIntoParameterized;
-    }
+		private System.Windows.Forms.GroupBox groupBoxConnect;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Button btnGenerateSampleData;
+	}
 }
 

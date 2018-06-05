@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EntityJustworksGUI
 {
-	public class TestObjectsFactory
+	public static class TestObjectsFactory
 	{
 		public static string column1 = "RecordID";
 		public static string column2 = "FirstName";
