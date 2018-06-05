@@ -35,12 +35,20 @@ namespace EntityJustWorks.SQL
 
 			CodeNamespace codeNamespace = Code.CreateCodeNamespace(dataTable);
 
+			var utf8Encoding = new UTF8Encoding(false, true);
+
 			using (MemoryStream memoryStream = new MemoryStream())
-			using (TextWriter textWriter = new StreamWriter(memoryStream, new UTF8Encoding(false, true)))
+			using (TextWriter textWriter = new StreamWriter(memoryStream, utf8Encoding))
 			using (CSharpCodeProvider codeProvider = new CSharpCodeProvider())
 			{
 				codeProvider.GenerateCodeFromNamespace(codeNamespace, textWriter, codeOptions);
-				result = Encoding.UTF8.GetString(memoryStream.ToArray());
+				textWriter.Flush();
+				memoryStream.Position = 0;
+
+				using (StreamReader streamReader = new StreamReader(memoryStream, utf8Encoding))
+				{
+					result = streamReader.ReadToEnd();
+				}
 			}
 
 			// Correct our little auto-property 'hack'
