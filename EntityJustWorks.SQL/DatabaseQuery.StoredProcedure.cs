@@ -1,10 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/* 
+ * EntityJustWorks.SQL - C# class object to/from SQL database
+ * 
+ * 
+ *  Full code and more available @
+ *    https://csharpcodewhisperer.blogspot.com
+ *    
+ *  Or check for updates @
+ *    https://github.com/AdamRakaska/EntityJustworks
+ * 
+ */
+using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace EntityJustWorks.SQL
 {

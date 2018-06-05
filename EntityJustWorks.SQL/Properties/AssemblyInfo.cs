@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("https://csharpcodewhisperer.blogspot.com")]
 [assembly: AssemblyProduct("EntityJustWorks")]
-[assembly: AssemblyCopyright("Copyright © Adam Rakaska, 2015. CSharpProgramming.Tips")]
+[assembly: AssemblyCopyright("Copyright © Adam Rakaska, 2018. CSharpProgramming.Tips")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
