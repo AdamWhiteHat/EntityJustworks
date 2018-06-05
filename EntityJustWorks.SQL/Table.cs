@@ -30,7 +30,7 @@ namespace EntityJustWorks.SQL
 		/// <returns>A DataTable who's DataColumns match the name and type of each class T's public properties.</returns>
 		public static DataTable FromClassInstanceCollection<T>(params T[] classInstanceCollection) where T : class
 		{
-			DataTable result = FromClassType<T>();
+			DataTable result = FromClass<T>();
 
 			if (!Helper.IsValidDatatable(result, true))
 			{
@@ -41,7 +41,7 @@ namespace EntityJustWorks.SQL
 			{
 				foreach (T classObject in classInstanceCollection)
 				{
-					Table.AddRowFromClassInstance(result, classObject);
+					Table.FromClassInstance(result, classObject);
 				}
 			}
 			return result;// Returns and empty DataTable with columns defined (table schema)
@@ -52,7 +52,7 @@ namespace EntityJustWorks.SQL
 		/// </summary>
 		/// <typeparam name="T">The type of the class to create a DataTable from.</typeparam>
 		/// <returns>A DataTable who's DataColumns match the name and type of each class T's public properties.</returns>
-		public static DataTable FromClassType<T>() where T : class
+		public static DataTable FromClass<T>() where T : class
 		{
 			Type classType = typeof(T);
 			string tableName = classType.Name ?? classType.UnderlyingSystemType.Name ?? "UnknownRefType";
@@ -67,7 +67,7 @@ namespace EntityJustWorks.SQL
 				{
 					if (property.PropertyType.IsGenericType)
 					{
-						// If Nullable<T> and Generic, this is how we get the underlying Type...
+						// If Nullable<> and Generic, this is how we get the underlying Type...
 						column.DataType = property.PropertyType.GenericTypeArguments.FirstOrDefault();
 					}
 					else
@@ -94,21 +94,24 @@ namespace EntityJustWorks.SQL
 		/// </summary>
 		/// <param name="dataTable">A reference to the DataTable to insert the DataRow into.</param>
 		/// <param name="classObject">The class containing the data to fill the DataRow from.</param>
-		public static void AddRowFromClassInstance<T>(DataTable dataTable, T classObject) where T : class
+		/// <returns>The DataTable in the parameters. This return instance is superflowous; </returns>
+		public static DataTable FromClassInstance<T>(DataTable dataTable, T classObject) where T : class
 		{
 			DataRow row = dataTable.NewRow();
 			foreach (PropertyInfo property in typeof(T).GetProperties())
 			{
-				if (IsValid(dataTable, property))
+				if (IsValidTableData(dataTable, property))
 				{
 					object value = property.GetValue(classObject, null);
 					row[property.Name] = (value == null) ? DBNull.Value : value;
 				}
 			}
 			dataTable.Rows.Add(row);
+
+			return dataTable;
 		}
 
-		private static bool IsValid(DataTable dataTable, PropertyInfo property)
+		private static bool IsValidTableData(DataTable dataTable, PropertyInfo property)
 		{
 			return (dataTable.Columns.Contains(property.Name) && dataTable.Columns[property.Name] != null);
 		}
@@ -135,18 +138,14 @@ namespace EntityJustWorks.SQL
 		public static IList<T> ToClassInstanceCollection<T>(DataTable dataTable) where T : class, new()
 		{
 			if (!Helper.IsValidDatatable(dataTable))
-			{
 				return new List<T>();
-			}
 
 			Type classType = typeof(T);
 			IList<PropertyInfo> propertyList = classType.GetProperties();
 
 			// Parameter class has no public properties.
 			if (propertyList.Count == 0)
-			{
 				return new List<T>();
-			}
 
 			List<string> columnNames = dataTable.Columns.Cast<DataColumn>().Select(column => column.ColumnName).ToList();
 
@@ -159,9 +158,8 @@ namespace EntityJustWorks.SQL
 					foreach (PropertyInfo property in propertyList)
 					{
 						if (!IsValidObjectData(property, columnNames, row))
-						{
 							continue;
-						}
+
 						object propertyValue = System.Convert.ChangeType(
 								row[property.Name],
 								property.PropertyType
