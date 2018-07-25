@@ -12,6 +12,7 @@
 using System;
 using System.IO;
 using System.Data;
+using System.Linq;
 using System.CodeDom;
 using Microsoft.CSharp;
 using System.Diagnostics;
@@ -26,6 +27,19 @@ namespace EntityJustWorks.SQL
 	/// </summary>
 	public static class Code
 	{
+		private static string invalidNameCharacters = "(){}[]<>|,./\\\"?;:'~`!@#$%^&*-=+";
+		private static char[] characterArray;
+
+		static Code()
+		{
+			characterArray = invalidNameCharacters.ToCharArray();
+		}
+
+		private static string SanitizeString(string input)
+		{
+			return new string(input.Where(c => !characterArray.Contains(c)).ToArray());
+		}
+
 		public static FileInfo CreateCode(DataTable dataTable, string filename = null)
 		{
 			// CodeGeneratorOptions so the output is clean and easy to read
@@ -50,7 +64,7 @@ namespace EntityJustWorks.SQL
 					result = streamReader.ReadToEnd();
 				}
 			}
-
+			
 			// Correct our little auto-property 'hack'
 			result = result.Replace("//;", "");
 
@@ -67,14 +81,15 @@ namespace EntityJustWorks.SQL
 
 		private static CodeNamespace CreateCodeNamespace(DataTable dataTable)
 		{
-			CodeTypeDeclaration classDeclaration = CreateClass(dataTable.TableName);
+			string className = SanitizeString(dataTable.TableName);
+			CodeTypeDeclaration classDeclaration = CreateClass(className);
 
 			foreach (DataColumn column in dataTable.Columns)
 			{
-				classDeclaration.Members.Add(CreateProperty(column.ColumnName, column.DataType));
+				classDeclaration.Members.Add(CreateProperty(SanitizeString(column.ColumnName), column.DataType));
 			}
 
-			string namespaceName = new StackFrame(2).GetMethod().DeclaringType.Namespace;
+			string namespaceName = SanitizeString(new StackFrame(2).GetMethod().DeclaringType.Namespace);
 
 			CodeNamespace codeNamespace = new CodeNamespace(namespaceName);
 			codeNamespace.Types.Add(classDeclaration);
@@ -103,7 +118,7 @@ namespace EntityJustWorks.SQL
 			// This is a little hack. Since you cant create auto properties in CodeDOM,
 			//  we make the getter and setter part of the member name.
 			// This leaves behind a trailing semicolon that we comment out.
-			//  Later, we remove the commented out semicolons.
+			// Later, after code generation, we remove the commented out semicolons for aesthetics.
 			string memberName = fieldName + "\t{ get; set; }//";
 
 			CodeMemberField result = new CodeMemberField(propertyType, memberName);
