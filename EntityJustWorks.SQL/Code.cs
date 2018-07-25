@@ -89,7 +89,7 @@ namespace EntityJustWorks.SQL
 				classDeclaration.Members.Add(CreateProperty(SanitizeString(column.ColumnName), column.DataType));
 			}
 
-			string namespaceName = SanitizeString(new StackFrame(2).GetMethod().DeclaringType.Namespace);
+			string namespaceName = new StackFrame(2).GetMethod().DeclaringType.Namespace;
 
 			CodeNamespace codeNamespace = new CodeNamespace(namespaceName);
 			codeNamespace.Types.Add(classDeclaration);
