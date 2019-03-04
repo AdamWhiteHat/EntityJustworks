@@ -6,7 +6,7 @@
  *    https://csharpcodewhisperer.blogspot.com
  *    
  *  Or check for updates @
- *    https://github.com/AdamRakaska/EntityJustworks
+ *    https://github.com/AdamWhiteHat/EntityJustworks
  * 
  */
 using System.Data;

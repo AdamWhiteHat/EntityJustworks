@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<title>EntityJustwork.SQL Usage Examples</title>
+<style type="text/css">
+pre {
+	font-family: 'Consolas','Inconsolata';
+	font-size: 13px;
+	color: black;
+	background: white;
+}
+.keyword {
+	color: blue;
+}
+.comment {
+	color: green;
+}
+.type {
+	color:#2b91af;
+}
+.string {
+	color: #a31515;
+}
+</style>
+</head>
+<body>
+<pre>
+<span class="keyword">string</span> ConnectionString = <span class="string">&quot;Data Source=DBSQLDEV;Initial Catalog=MyAwesomeDB;Integrated Security=True&quot;</span>;
+ 
+<span class="type">DataTable</span> dataTable = <span class="type">Table</span>.FromClass&lt;<span class="type">Customer</span>&gt;();                  <span class="comment">// Creates an empty DataTable with Customer schema, that is a DataTable with column names matching the public properties of Customer</span>
+<span class="keyword">string</span> createTableScript = <span class="type">SQLScript</span>.CreateTable(dataTable);        <span class="comment">// Creates a CREATE TABLE script from a DataTable with schema</span>
+<span class="type">File</span>.WriteAllText(<span class="string">&quot;CreateTable_Customers.sql&quot;</span>, createTableScript);  <span class="comment">// Write script to script file</span>
+<span class="type">DatabaseQuery</span>.NonQueryCommand(ConnectionString, createTableScript); <span class="comment">// Execute CREATE TABLE script to create table in the data base</span>
+ 
+<span class="type">Customer</span> classInstance = <span class="keyword">new</span> <span class="type">Customer</span>() { FirstName = <span class="string">&quot;Bill&quot;</span> };     <span class="comment">// Instantiate new Customer class</span>
+ 
+<span class="keyword">string</span> insertIntoScript = <span class="type">SQLScript</span>.InsertInto&lt;<span class="type">Customer</span>&gt;(classInstance); <span class="comment">// Create a INSERT INTO sql script</span>
+<span class="type">DatabaseQuery</span>.NonQueryCommand(ConnectionString, insertIntoScript);       <span class="comment">// Insert Customer class instance into DB by executing above script</span>
+ 
+<span class="type">DataTable</span> customerQueryRecords = <span class="type">DatabaseQuery</span>.ToDataTable(ConnectionString, <span class="string">&quot;SELECT * FROM [Customer] WHERE [FirstName] = &#39;Bill&#39;&quot;</span>); <span class="comment">// Select all customers named &#39;Bill&#39;</span>
+<span class="type">IList</span>&lt;<span class="type">Customer</span>&gt; customerList = <span class="type">Table</span>.ToClassInstanceCollection&lt;<span class="type">Customer</span>&gt;(customerQueryRecords); <span class="comment">// Populate Customer class&#39;s public properties with data from the matching DataTable</span>
+ 
+<span class="type">DataTable</span> orderRecord = <span class="type">DatabaseQuery</span>.ToDataTable(ConnectionString, <span class="string">&quot;SELECT TOP 1 * FROM [Order]&quot;</span>); <span class="comment">// Select a row from the Order table, for which we don't have a DAO object in code yet</span>
+<span class="type">FileInfo</span> orderClass_CSharp = <span class="type">Code</span>.CreateCode(orderRecord, <span class="string">&quot;Order.cs&quot;</span>); <span class="comment">// Create a C# class with public properties matching the DataTable columns, and save it to a .cs code file</span>
+<span class="type">Type</span> orderClass_Assembly = <span class="type">Table</span>.ToAssembly(orderRecord); <span class="comment">// Or create the class as a .NET assembly, available as a Type for the code to use immediately</span>
+</pre>
+</body>
+</html>

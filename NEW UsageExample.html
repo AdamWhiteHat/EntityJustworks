@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<title>EntityJustwork.SQL Usage Examples</title>
+<style type="text/css">
+span {
+	font-family: 'Consolas';
+	font-size: 10pt;
+	color: #000000;
+}
+.sc0 {
+}
+.sc2 {
+	color: #008000;
+}
+.sc5 {
+	font-weight: bold;
+	color: #0000FF;
+}
+.sc6 {
+	color: #808080;
+}
+.sc10 {
+	font-weight: bold;
+	color: #000080;
+}
+.sc11 {
+}
+.sc16 {
+	color: #8000FF;
+}
+</style>
+</head>
+<body>
+<div style="float: left; white-space: pre; line-height: 1; background: #FFFFFF; "><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">ConnectionString</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc6">"Data Source=DBSQLDEV;Initial Catalog=MyAwesomeDB;Integrated Security=True"</span><span class="sc10">;</span><span class="sc0">
+
+</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">dataTable</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">Table</span><span class="sc10">.</span><span class="sc11">FromClass</span><span class="sc10">&lt;</span><span class="sc11">Customer</span><span class="sc10">&gt;();</span><span class="sc0"> </span><span class="sc2">// Creates an empty DataTable with Customer schema, that is a DataTable with column names matching the public properties of Customer
+</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">createTableScript</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">SQLScript</span><span class="sc10">.</span><span class="sc11">CreateTable</span><span class="sc10">(</span><span class="sc11">dataTable</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Creates a CREATE TABLE script from a DataTable with schema
+</span><span class="sc11">File</span><span class="sc10">.</span><span class="sc11">WriteAllText</span><span class="sc10">(</span><span class="sc6">"CreateTable_Customers.sql"</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">createTableScript</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Write script to script file
+</span><span class="sc11">DatabaseQuery</span><span class="sc10">.</span><span class="sc11">NonQueryCommand</span><span class="sc10">(</span><span class="sc11">ConnectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">createTableScript</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Execute CREATE TABLE script to create table in the data base
+</span><span class="sc0">
+</span><span class="sc11">Customer</span><span class="sc0"> </span><span class="sc11">classInstance</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc5">new</span><span class="sc0"> </span><span class="sc11">Customer</span><span class="sc10">()</span><span class="sc0"> </span><span class="sc10">{</span><span class="sc0"> </span><span class="sc11">FirstName</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc6">"Bill"</span><span class="sc0"> </span><span class="sc10">};</span><span class="sc0"> </span><span class="sc2">// Instantiate new Customer class
+</span><span class="sc0">
+</span><span class="sc16">string</span><span class="sc0"> </span><span class="sc11">insertIntoScript</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">SQLScript</span><span class="sc10">.</span><span class="sc11">InsertInto</span><span class="sc10">&lt;</span><span class="sc11">Customer</span><span class="sc10">&gt;(</span><span class="sc11">classInstance</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Create a INSERT INTO sql script
+</span><span class="sc11">DatabaseQuery</span><span class="sc10">.</span><span class="sc11">NonQueryCommand</span><span class="sc10">(</span><span class="sc11">ConnectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">insertIntoScript</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Insert Customer class instance into DB by executing above script
+</span><span class="sc0">            
+</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">customerQueryRecords</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">DatabaseQuery</span><span class="sc10">.</span><span class="sc11">ToDataTable</span><span class="sc10">(</span><span class="sc11">ConnectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc6">"SELECT * FROM [Customer] WHERE [FirstName] = 'Bill'"</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Select all customers named 'Bill'
+</span><span class="sc11">IList</span><span class="sc10">&lt;</span><span class="sc11">Customer</span><span class="sc10">&gt;</span><span class="sc0"> </span><span class="sc11">customerList</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">Table</span><span class="sc10">.</span><span class="sc11">ToClassInstanceCollection</span><span class="sc10">&lt;</span><span class="sc11">Customer</span><span class="sc10">&gt;(</span><span class="sc11">customerQueryRecords</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Populate Customer class's public properties with data from the matching DataTable
+</span><span class="sc0">
+</span><span class="sc11">DataTable</span><span class="sc0"> </span><span class="sc11">orderRecord</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">DatabaseQuery</span><span class="sc10">.</span><span class="sc11">ToDataTable</span><span class="sc10">(</span><span class="sc11">ConnectionString</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc6">"SELECT TOP 1 * FROM [Order]"</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Select a row from the Order table, for which we don't have a DAO object in code yet
+</span><span class="sc11">FileInfo</span><span class="sc0"> </span><span class="sc11">orderClass_CSharp</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">Code</span><span class="sc10">.</span><span class="sc11">CreateCode</span><span class="sc10">(</span><span class="sc11">orderRecord</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc6">"Order.cs"</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Create a C# class with public properties matching the DataTable columns, and save it to a .cs code file
+</span><span class="sc11">Type</span><span class="sc0"> </span><span class="sc11">orderClass_Assembly</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">Table</span><span class="sc10">.</span><span class="sc11">ToAssembly</span><span class="sc10">(</span><span class="sc11">orderRecord</span><span class="sc10">);</span><span class="sc0"> </span><span class="sc2">// Or create the class as a .NET assembly, available as a Type for the code to use immediately
+</span></div></body>
+</html>

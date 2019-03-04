@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<title>EntityJustwork.SQL Usage Examples</title>
+<style type="text/css">
+pre {
+	font-family: 'Consolas','Inconsolata';
+	font-size: 13px;
+	color: black;
+	background: white;
+}
+.keyword {
+	color: blue;
+}
+.comment {
+	color: green;
+}
+.type {
+	color:#2b91af;
+}
+.string {
+	color: #a31515;
+}
+</style>
+</head>
+<body>
+<pre>
+<span class="keyword">string</span>&nbsp;ConnectionString&nbsp;=&nbsp;<span class="string">&quot;Data&nbsp;Source=DBSQLDEV;Initial&nbsp;Catalog=MyAwesomeDB;Integrated&nbsp;Security=True&quot;</span>;
+ 
+<span class="type">DataTable</span>&nbsp;dataTable&nbsp;=&nbsp;<span class="type">Table</span>.FromClass&lt;<span class="type">Customer</span>&gt;();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Creates&nbsp;an&nbsp;empty&nbsp;DataTable&nbsp;with&nbsp;Customer&nbsp;schema,&nbsp;that&nbsp;is&nbsp;a&nbsp;DataTable&nbsp;with&nbsp;column&nbsp;names&nbsp;matching&nbsp;the&nbsp;public&nbsp;properties&nbsp;of&nbsp;Customer</span>
+<span class="keyword">string</span>&nbsp;createTableScript&nbsp;=&nbsp;<span class="type">SQLScript</span>.CreateTable(dataTable);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Creates&nbsp;a&nbsp;CREATE&nbsp;TABLE&nbsp;script&nbsp;from&nbsp;a&nbsp;DataTable&nbsp;with&nbsp;schema</span>
+<span class="type">File</span>.WriteAllText(<span class="string">&quot;CreateTable_Customers.sql&quot;</span>,&nbsp;createTableScript);&nbsp;&nbsp;<span class="comment">//&nbsp;Write&nbsp;script&nbsp;to&nbsp;script&nbsp;file</span>
+<span class="type">DatabaseQuery</span>.NonQueryCommand(ConnectionString,&nbsp;createTableScript);&nbsp;<span class="comment">//&nbsp;Execute&nbsp;CREATE&nbsp;TABLE&nbsp;script&nbsp;to&nbsp;create&nbsp;table&nbsp;in&nbsp;the&nbsp;data&nbsp;base</span>
+ 
+<span class="type">Customer</span>&nbsp;classInstance&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;<span class="type">Customer</span>()&nbsp;{&nbsp;FirstName&nbsp;=&nbsp;<span class="string">&quot;Bill&quot;</span>&nbsp;};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Instantiate&nbsp;new&nbsp;Customer&nbsp;class</span>
+ 
+<span class="keyword">string</span>&nbsp;insertIntoScript&nbsp;=&nbsp;<span class="type">SQLScript</span>.InsertInto&lt;<span class="type">Customer</span>&gt;(classInstance);&nbsp;<span class="comment">//&nbsp;Create&nbsp;a&nbsp;INSERT&nbsp;INTO&nbsp;sql&nbsp;script</span>
+<span class="type">DatabaseQuery</span>.NonQueryCommand(ConnectionString,&nbsp;insertIntoScript);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Insert&nbsp;Customer&nbsp;class&nbsp;instance&nbsp;into&nbsp;DB&nbsp;by&nbsp;executing&nbsp;above&nbsp;script</span>
+ 
+<span class="type">DataTable</span>&nbsp;customerQueryRecords&nbsp;=&nbsp;<span class="type">DatabaseQuery</span>.ToDataTable(ConnectionString,&nbsp;<span class="string">&quot;SELECT&nbsp;*&nbsp;FROM&nbsp;[Customer]&nbsp;WHERE&nbsp;[FirstName]&nbsp;=&nbsp;&#39;Bill&#39;&quot;</span>);&nbsp;<span class="comment">//&nbsp;Select&nbsp;all&nbsp;customers&nbsp;named&nbsp;&#39;Bill&#39;</span>
+<span class="type">IList</span>&lt;<span class="type">Customer</span>&gt;&nbsp;customerList&nbsp;=&nbsp;<span class="type">Table</span>.ToClassInstanceCollection&lt;<span class="type">Customer</span>&gt;(customerQueryRecords);&nbsp;<span class="comment">//&nbsp;Populate&nbsp;Customer&nbsp;class&#39;s&nbsp;public&nbsp;properties&nbsp;with&nbsp;data&nbsp;from&nbsp;the&nbsp;matching&nbsp;DataTable</span>
+ 
+<span class="type">DataTable</span>&nbsp;orderRecord&nbsp;=&nbsp;<span class="type">DatabaseQuery</span>.ToDataTable(ConnectionString,&nbsp;<span class="string">&quot;SELECT&nbsp;TOP&nbsp;1&nbsp;*&nbsp;FROM&nbsp;[Order]&quot;</span>);&nbsp;<span class="comment">//&nbsp;Select&nbsp;a&nbsp;row&nbsp;from&nbsp;the&nbsp;Order&nbsp;table,&nbsp;for&nbsp;which&nbsp;we&nbsp;don't&nbsp;have&nbsp;a&nbsp;DAO&nbsp;object&nbsp;in&nbsp;code&nbsp;yet</span>
+<span class="type">FileInfo</span>&nbsp;orderClass_CSharp&nbsp;=&nbsp;<span class="type">Code</span>.CreateCode(orderRecord,&nbsp;<span class="string">&quot;Order.cs&quot;</span>);&nbsp;<span class="comment">//&nbsp;Create&nbsp;a&nbsp;C#&nbsp;class&nbsp;with&nbsp;public&nbsp;properties&nbsp;matching&nbsp;the&nbsp;DataTable&nbsp;columns,&nbsp;and&nbsp;save&nbsp;it&nbsp;to&nbsp;a&nbsp;.cs&nbsp;code&nbsp;file</span>
+<span class="type">Type</span>&nbsp;orderClass_Assembly&nbsp;=&nbsp;<span class="type">Table</span>.ToAssembly(orderRecord);&nbsp;<span class="comment">//&nbsp;Or&nbsp;create&nbsp;the&nbsp;class&nbsp;as&nbsp;a&nbsp;.NET&nbsp;assembly,&nbsp;available&nbsp;as&nbsp;a&nbsp;Type&nbsp;for&nbsp;the&nbsp;code&nbsp;to&nbsp;use&nbsp;immediately</span>
+</pre>
+</body>
+</html>
