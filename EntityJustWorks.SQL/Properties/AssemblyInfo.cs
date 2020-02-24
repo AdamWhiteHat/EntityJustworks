@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("EntityJustWorks")]
-[assembly: AssemblyDescription("https://csharpcodewhisperer.blogspot.com")]
+[assembly: AssemblyDescription("Data first or code first ORM. Entity-object-class-poco to SQL repository mapping, and vice versa. Data to C-Sharp class code or emit assembly. Can dynamically generate assemblies, C-Sharp code, and SQL scripts for CREATE TABLE, INSERT, and UPDATE.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("https://csharpcodewhisperer.blogspot.com")]
 [assembly: AssemblyProduct("EntityJustWorks")]
-[assembly: AssemblyCopyright("Copyright © Adam White, 2018.")]
+[assembly: AssemblyCopyright("Copyright © Adam White, 2019.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
